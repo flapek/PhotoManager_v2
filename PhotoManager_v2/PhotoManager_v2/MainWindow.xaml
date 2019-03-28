@@ -17,25 +17,19 @@
         </Grid>
 
         <Grid Grid.Row="1" ShowGridLines="True">
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="MenuPanel" MaxWidth="300" MinWidth="100"/>
                 <ColumnDefinition x:Name="ContentPanel" Width="2*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="1" ShowGridLines="True">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="251*"/>
-                    <ColumnDefinition Width="13*"/>
-                </Grid.ColumnDefinitions>
-
                 <Grid.RowDefinitions>
                     <RowDefinition x:Name="ImagePanel" Height="2*"/>
                     <RowDefinition x:Name="SliderPanel" MaxHeight="200" MinHeight="80"/>
                 </Grid.RowDefinitions>
 
                 <Button x:Name="AddPhotoButton" Grid.Row="0" Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="40" MaxWidth="50" Click="AddPhotoButton_Click"/>
-                <StackPanel x:Name="Slider" Grid.Row="1" Background="LightGray" Orientation="Horizontal" Grid.ColumnSpan="2"/>
+                <StackPanel x:Name="Slider" Grid.Row="1" Background="LightGray" Orientation="Horizontal" Grid.ColumnSpan="3"/>
             </Grid>
 
         </Grid>

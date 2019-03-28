@@ -55,18 +55,30 @@ namespace PhotoManager_v2
 
         private  void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowInTaskbar = false;
-            Hide();
+            string pathToPS = @"C:\Users\filap\Desktop\pscs6\PhotoshopCS6Portable.exe";
+            string pathToPaint = "mspaint.exe";
 
-            ProcessStartInfo start_info = new ProcessStartInfo("wordpad.exe");      //jak ustawić otwieranie innego programu bez błędu              //ProcessStartInfo(Scieżka do otwieranego programu, plik który otwieramy od razu w programie)
-            Process process = new Process();
+            try
+            {
+                ProcessStartInfo start_info = new ProcessStartInfo(pathToPS);      //jak ustawić otwieranie innego programu bez błędu              //ProcessStartInfo(Scieżka do otwieranego programu, plik który otwieramy od razu w programie)
+                Process process = new Process();
 
-            start_info.WindowStyle = ProcessWindowStyle.Maximized;
-            process.StartInfo = start_info;
-            process.Start();
-            process.WaitForExit();
-            ShowInTaskbar = true;
-            Show();
+                start_info.WindowStyle = ProcessWindowStyle.Maximized;
+                process.StartInfo = start_info;
+                process.Start();
+
+                ShowInTaskbar = false;
+                Hide();
+
+                process.WaitForExit();
+
+                ShowInTaskbar = true;
+                Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Error");
+            }
         }
     }
 }

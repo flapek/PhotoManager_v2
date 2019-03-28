@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoManager_v2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800">
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition x:Name="OptionPanel" Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
+        <Grid Grid.Row="0">
+            <Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Right" Padding="5,5,5,5" Click="EditButton_Click" />
+        </Grid>
 
         <Grid Grid.Row="1" ShowGridLines="True">
 
@@ -20,8 +23,23 @@
                 <ColumnDefinition x:Name="ContentPanel" Width="2*"/>
             </Grid.ColumnDefinitions>
 
+            <Grid Grid.Column="1" ShowGridLines="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="251*"/>
+                    <ColumnDefinition Width="13*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="ImagePanel" Height="2*"/>
+                    <RowDefinition x:Name="SliderPanel" MaxHeight="200" MinHeight="80"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="AddPhotoButton" Grid.Row="0" Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="40" MaxWidth="50" Click="AddPhotoButton_Click"/>
+                <StackPanel x:Name="Slider" Grid.Row="1" Background="LightGray" Orientation="Horizontal" Grid.ColumnSpan="2"/>
+            </Grid>
+
         </Grid>
-        
-        
+
+
     </Grid>
 </Window>

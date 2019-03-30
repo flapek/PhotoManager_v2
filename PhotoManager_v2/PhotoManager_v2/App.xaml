@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:PhotoManager_v2"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>

@@ -1,110 +1,14 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Linq;
 using System.IO;
-using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
+using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using Microsoft.Win32;
-using PhotoManager_v2.Class.DirectoryTree;
-using Path = System.IO.Path;
 
-namespace PhotoManager_v2
+namespace PhotoManager_v2.Class.DirectoryTree
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    partial class DirectoryTreeWithoutIcon : MainWindow
     {
-        //DirectoryTreeWithoutIcon DirectoryTreeWithoutIcon = new DirectoryTreeWithoutIcon();                   //błąd wywołania 
-
-        public MainWindow()
-        {
-            InitializeComponent();
-            //MessageBox.Show("Hello! \nThere you can organize your own photo.");
-            LoadDirectories();
-        }
-
-        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            Image image = new Image();
-            Label label = new Label();
-
-
-            openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.Filter = "JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tiff)|*.tiff|All Files (*.*)|*.*"; ;
-            openFileDialog.Multiselect = true;
-            openFileDialog.RestoreDirectory = true;
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-            image.HorizontalAlignment = HorizontalAlignment.Center;
-            image.MaxHeight = 150;
-            image.MinHeight = 60;
-            image.MaxWidth = 150;
-            image.MinWidth = 60;
-            image.Stretch = Stretch.Uniform;
-
-
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                foreach (string filename in openFileDialog.FileNames)
-                {
-                    image.Source = new BitmapImage(new Uri(filename));
-                    label.Content = Path.GetFileName(filename);
-                    Slider.Children.Add(image);                     //wywala błąd podczas dodawania więcej niż jednego zdjęcia
-                    Slider.Children.Add(label);
-                }
-            }
-        }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            string pathToPS = @"C:\Users\filap\Desktop\pscs6\PhotoshopCS6Portable.exe";
-            string pathToPaint = "mspaint.exe";
-
-            try
-            {
-                ProcessStartInfo start_info = new ProcessStartInfo(pathToPaint);       //jak automatycznie otworzyć program z plikiem
-                Process process = new Process();
-
-                start_info.WindowStyle = ProcessWindowStyle.Maximized;
-                process.StartInfo = start_info;
-
-                process.Start();
-
-                ShowInTaskbar = false;
-                Hide();
-
-                process.WaitForExit();
-
-                ShowInTaskbar = true;
-                Show();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(this, Constants.ErrorProgramFileNameIsFail, "Error", MessageBoxButton.OK);
-            }
-        }
-
-        private void LoadDirectoryButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DirectoryPathButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-
-        /*------------------------------------------------------------------------------------------------------------------------*/
-        /*                                              Przenieść do osobnej klasy                                              */
-        private void LoadDirectories()
+        public void LoadDirectories()
         {
             DriveInfo[] drives = DriveInfo.GetDrives();
             foreach (var drive in drives)
@@ -123,15 +27,6 @@ namespace PhotoManager_v2
             AddDummy(item);
             item.Expanded += new RoutedEventHandler(item_Expanded);
             return item;
-        }
-        public class DummyTreeViewItem : TreeViewItem
-        {
-            public DummyTreeViewItem()
-                : base()
-            {
-                Header = "Dummy";
-                Tag = "Dummy";
-            }
         }
         private TreeViewItem GetItem(DirectoryInfo directory)
         {
@@ -154,6 +49,15 @@ namespace PhotoManager_v2
                 Tag = file
             };
             return item;
+        }
+        private class DummyTreeViewItem : TreeViewItem
+        {
+            public DummyTreeViewItem()
+                : base()
+            {
+                Header = "Dummy";
+                Tag = "Dummy";
+            }
         }
         private void AddDummy(TreeViewItem item)
         {
@@ -223,7 +127,7 @@ namespace PhotoManager_v2
                 }
             }
         }
-        void item_Expanded(object sender, RoutedEventArgs e)
+        private void item_Expanded(object sender, RoutedEventArgs e)
         {
             var item = (TreeViewItem)sender;
             if (HasDummy(item))
@@ -235,7 +139,5 @@ namespace PhotoManager_v2
                 Cursor = Cursors.Arrow;
             }
         }
-        /*------------------------------------------------------------------------------------------------------------------------*/
-
     }
 }

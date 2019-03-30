@@ -23,7 +23,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <TreeView Name="treeView" Margin="10,10,10,10" />
+                <TreeView Name="DirectoryTreeView" Margin="10,10,10,10" />
 
             </Grid>
             

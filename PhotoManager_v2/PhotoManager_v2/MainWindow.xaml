@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoManager_v2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800">
+        Title="PhotoManager" Height="450" Width="800" MinHeight="300" MinWidth="500">
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition x:Name="OptionPanel" Height="30"/>

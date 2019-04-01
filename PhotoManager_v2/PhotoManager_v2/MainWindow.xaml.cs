@@ -18,7 +18,7 @@ namespace PhotoManager_v2
     /// </summary>
     public partial class MainWindow : Window
     {
-        //DirectoryTreeWithoutIcon DirectoryTreeWithoutIcon = new DirectoryTreeWithoutIcon();                   //błąd wywołania 
+        // DirectoryTreeWithoutIcon directoryTreeWithoutIcon = new DirectoryTreeWithoutIcon();                   //błąd wywołania 
 
         public MainWindow()
         {

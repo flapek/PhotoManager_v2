@@ -50,15 +50,6 @@ namespace PhotoManager_v2.Class.DirectoryTree
             };
             return item;
         }
-        private class DummyTreeViewItem : TreeViewItem
-        {
-            public DummyTreeViewItem()
-                : base()
-            {
-                Header = "Dummy";
-                Tag = "Dummy";
-            }
-        }
         private void AddDummy(TreeViewItem item)
         {
             item.Items.Add(new DummyTreeViewItem());

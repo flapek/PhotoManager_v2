@@ -13,9 +13,6 @@ using Path = System.IO.Path;
 
 namespace PhotoManager_v2
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         // DirectoryTreeWithoutIcon directoryTreeWithoutIcon = new DirectoryTreeWithoutIcon();                   //błąd wywołania 
@@ -60,8 +57,11 @@ namespace PhotoManager_v2
                 }
             }
         }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
         {
             string pathToPS = @"C:\Users\filap\Desktop\pscs6\PhotoshopCS6Portable.exe";
             string pathToPaint = "mspaint.exe";
@@ -89,18 +89,6 @@ namespace PhotoManager_v2
                 MessageBox.Show(this, Constants.ErrorProgramFileNameIsFail, "Error", MessageBoxButton.OK);
             }
         }
-
-        private void LoadDirectoryButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DirectoryPathButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
 
         /*------------------------------------------------------------------------------------------------------------------------*/
         /*                                              Przenieść do osobnej klasy                                              */

@@ -9,21 +9,28 @@
     <Grid ShowGridLines="True">
 
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="OptionPanel" Height="30"/>
+            <RowDefinition x:Name="OptionPanel" Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="FileComboBox" Grid.Column="0" Width="auto" Cursor="Hand"/>
-            <ComboBox x:Name="EditComboBox" Grid.Column="1" Width="auto" Cursor="Hand" Text="Edit"/>
-            <Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Right" Padding="5,5,5,5" Click="EditButton_Click" Grid.Column="3" />
-
+            <DockPanel Grid.Column="0">
+                <Menu>
+                    <MenuItem Header="_File">
+                        <MenuItem Header="_Save"/>
+                        <MenuItem x:Name="OptionMenuItem" Header="_Option"/>
+                        <Separator/>
+                        <MenuItem x:Name="ExitMenuItem" Header="E_xit" Click="ExitMenuItem_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="_Edit">
+                        <MenuItem Header="_Fast edit"/>
+                        <MenuItem x:Name="EditMenuItem" Header="Edit in _other program" Click="EditMenuItem_Click"/>
+                    </MenuItem>
+                </Menu>
+            </DockPanel>
         </Grid>
 
         <Grid Grid.Row="1" ShowGridLines="True">
@@ -44,8 +51,6 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Button x:Name="AddPhotoButton" Content="Add photo" Width="80" Height="30" Margin="-290,30,0,0" Click="AddPhotoButton_Click"/>
-                    <Button x:Name="DirectoryPathButton" Content="Select path" Width="80" Height="30" Margin="300,30,0,0" Click="DirectoryPathButton_Click" />
-                    <Button x:Name="LoadDirectoryButton" Content="Load directory" Width="100" Height="30" Margin="0,30,0,0" Click="LoadDirectoryButton_Click"/>
                 </Grid>
                 <StackPanel x:Name="Slider" Grid.Row="1" Background="LightGray" Orientation="Horizontal" Grid.ColumnSpan="3"/>
             </Grid>

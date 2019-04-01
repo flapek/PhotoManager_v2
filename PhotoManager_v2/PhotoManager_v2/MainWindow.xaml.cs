@@ -1,13 +1,16 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
+using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.DirectoryTree;
 using Path = System.IO.Path;
 
@@ -23,7 +26,22 @@ namespace PhotoManager_v2
             //MessageBox.Show("Hello! \nThere you can organize your own photo.");
             LoadDirectories();
         }
-
+        void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Do you want close app?", "Close", MessageBoxButton.YesNo);
+            if (MessageBoxResult.No == result)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                WindowCollection windowCollection = OwnedWindows;
+                foreach (Window win in windowCollection)
+                {
+                    win.Close();
+                }
+            }
+        }
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -59,35 +77,12 @@ namespace PhotoManager_v2
         }
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
-        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
+        private async void EditInOtherProgramMenuItem_ClickAsync(object sender, RoutedEventArgs e)
         {
-            string pathToPS = @"C:\Users\filap\Desktop\pscs6\PhotoshopCS6Portable.exe";
-            string pathToPaint = "mspaint.exe";
-
-            try
-            {
-                ProcessStartInfo start_info = new ProcessStartInfo(pathToPaint);       //jak automatycznie otworzyć program z plikiem
-                Process process = new Process();
-
-                start_info.WindowStyle = ProcessWindowStyle.Maximized;
-                process.StartInfo = start_info;
-
-                process.Start();
-
-                ShowInTaskbar = false;
-                Hide();
-
-                process.WaitForExit();
-
-                ShowInTaskbar = true;
-                Show();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(this, Constants.ErrorProgramFileNameIsFail, "Error", MessageBoxButton.OK);
-            }
+            OpenEditingProgram openEditingProgram = new OpenEditingProgram();
+            await openEditingProgram.Open();
         }
 
         /*------------------------------------------------------------------------------------------------------------------------*/

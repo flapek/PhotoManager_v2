@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoManager_v2"
         mc:Ignorable="d"
-        Title="PhotoManager" Height="450" Width="800" MinHeight="300" MinWidth="500">
-    <Grid ShowGridLines="True">
-
+        Title="PhotoManager" Height="450" Width="800" MinHeight="300" MinWidth="500" Closing="MainWindow_Closing">
+    <Grid ShowGridLines="True">        
         <Grid.RowDefinitions>
             <RowDefinition x:Name="OptionPanel" Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -27,13 +26,13 @@
                     </MenuItem>
                     <MenuItem Header="_Edit">
                         <MenuItem Header="_Fast edit"/>
-                        <MenuItem x:Name="EditMenuItem" Header="Edit in _other program" Click="EditMenuItem_Click"/>
+                        <MenuItem x:Name="EditInOtherProgramMenuItem" Header="Edit in _other program" Click="EditInOtherProgramMenuItem_ClickAsync"/>
                     </MenuItem>
                 </Menu>
             </DockPanel>
         </Grid>
 
-        <Grid Grid.Row="1" ShowGridLines="True">
+        <Grid Grid.Row="1" ShowGridLines="True" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="MenuPanel" MaxWidth="300" MinWidth="100"/>
                 <ColumnDefinition x:Name="ContentPanel" Width="2*"/>

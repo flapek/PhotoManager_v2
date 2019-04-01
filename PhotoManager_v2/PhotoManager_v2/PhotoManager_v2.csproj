@@ -69,6 +69,7 @@
     <Compile Include="Class\Constants\Constants.cs" />
     <Compile Include="Class\DirectoryTree\DirectoryTreeWithoutIcon.cs" />
     <Compile Include="Class\DirectoryTree\DummyTreeViewItem.cs" />
+    <Compile Include="Class\OpenEditingProgram.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -6,7 +6,7 @@
 3. do prostej modyfikacji wybranego zdjęcia np.(możliwość nadpisania pliku albo utworzenia nowego przy zapisie zmian):
   - rotacja
   - kadrowanie
-  - poprawa światłą
+  - poprawa światła
   - poprawa koloru 
 4. do łączności z bazą danych:
 5. do nadawania tagów zdjęcią do łatwiejszego wyszukiwania ich

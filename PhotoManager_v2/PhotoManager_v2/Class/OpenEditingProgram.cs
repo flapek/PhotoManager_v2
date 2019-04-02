@@ -10,14 +10,14 @@ namespace PhotoManager_v2.Class
 {
     class OpenEditingProgram
     {
-        private string pathToPS = @"C:\Users\filap\Desktop\pscs6\PhotoshopCS6Portable.exe";
-        private string pathToPaint = "mspaint.exe";
+        private static string pathToPS = @"C:\Users\filap\Desktop\pscs6\PhotoshopCS6Portable.exe";
+        private static string pathToPaint = "mspaint.exe";
 
         public OpenEditingProgram()
         {
         }
 
-        public async Task Open()
+        public static async Task Open()
         {
             await Task.Run(() => {
                 try

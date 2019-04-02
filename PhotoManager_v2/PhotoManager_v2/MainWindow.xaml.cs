@@ -81,8 +81,7 @@ namespace PhotoManager_v2
         }
         private async void EditInOtherProgramMenuItem_ClickAsync(object sender, RoutedEventArgs e)
         {
-            OpenEditingProgram openEditingProgram = new OpenEditingProgram();
-            await openEditingProgram.Open();
+            await OpenEditingProgram.Open();
         }
 
         /*------------------------------------------------------------------------------------------------------------------------*/

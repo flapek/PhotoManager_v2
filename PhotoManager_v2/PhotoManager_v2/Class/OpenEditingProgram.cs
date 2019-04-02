@@ -43,7 +43,7 @@ namespace PhotoManager_v2.Class
                     MessageBox.Show(Constants.ErrorProgramFileNameIsFail, "Error", MessageBoxButton.OK);
                 }
             });
-            
+           
         }
     }
 }

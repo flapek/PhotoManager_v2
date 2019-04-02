@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.DirectoryTree;
+using PhotoManager_v2.Class.Photo;
 using Path = System.IO.Path;
 
 namespace PhotoManager_v2

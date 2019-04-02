@@ -40,7 +40,6 @@
 
             <Grid Grid.Column="0">
                 <TreeView Name="DirectoryTreeView" Margin="10,10,10,10" />
-
             </Grid>
 
             <Grid Grid.Column="1" ShowGridLines="True">

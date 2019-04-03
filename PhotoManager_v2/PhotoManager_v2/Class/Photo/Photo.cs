@@ -10,10 +10,15 @@ namespace PhotoManager_v2.Class.Photo
     {
         public string Name { set; get; }
         public DateTime DateOfExecutin { get; set; }
-        public List<string> Tags { set; get; }
-        public Author Author { set; get; }
+        public PhotoDimensions Dimensions { set; get; }
         public double Size { set; get; }
-        public PhotoDimensions dimensions { set; get; }
+        public List<Author> Author { set; get; }
         public string TypeOfElement { set; get; }
+        public List<string> Tags { set; get; }
+        public string PathFolder { set; get; }
+        public string Comment { set; get; }
+        public double ApertureUnit { set; get; }
+        public double ExposureTime { set; get; }
+        public double FocalLenght { set; get; }
     }
 }

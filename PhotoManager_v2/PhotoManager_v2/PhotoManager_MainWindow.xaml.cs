@@ -19,13 +19,15 @@ namespace PhotoManager_v2
 {
     public partial class MainWindow : Window
     {
-        // DirectoryTreeWithoutIcon directoryTreeWithoutIcon = new DirectoryTreeWithoutIcon();                   //błąd wywołania 
+        DirectoryTreeWithoutIcon directoryTreeWithoutIcon = new DirectoryTreeWithoutIcon();                   //błąd wywołania 
 
         public MainWindow()
         {
             InitializeComponent();
             //MessageBox.Show("Hello! \nThere you can organize your own photo.");
-            LoadDirectories();
+
+            directoryTreeWithoutIcon.LoadDirectories();
+            //LoadDirectories();
         }
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
@@ -83,6 +85,10 @@ namespace PhotoManager_v2
         private async void EditInOtherProgramMenuItem_ClickAsync(object sender, RoutedEventArgs e)
         {
             await OpenEditingProgram.Open();
+        }
+        private void OptionMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         /*------------------------------------------------------------------------------------------------------------------------*/

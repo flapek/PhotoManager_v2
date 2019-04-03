@@ -28,6 +28,7 @@
                         <MenuItem Header="_Fast edit"/>
                         <MenuItem x:Name="EditInOtherProgramMenuItem" Header="Edit in _other program" Click="EditInOtherProgramMenuItem_ClickAsync"/>
                     </MenuItem>
+                    <MenuItem Header="_Option" Click="OptionMenuItem_Click"></MenuItem>
                 </Menu>
             </DockPanel>
         </Grid>

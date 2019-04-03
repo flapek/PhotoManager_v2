@@ -58,7 +58,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Option_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhotoManager_MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -73,8 +77,11 @@
     <Compile Include="Class\Photo\Author.cs" />
     <Compile Include="Class\Photo\Photo.cs" />
     <Compile Include="Class\Photo\PhotoDimensions.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Option_Window.xaml.cs">
+      <DependentUpon>Option_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PhotoManager_MainWindow.xaml.cs">
+      <DependentUpon>PhotoManager_MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

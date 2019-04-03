@@ -13,10 +13,6 @@ namespace PhotoManager_v2.Class
         private static string pathToPS = @"C:\Users\filap\Desktop\pscs6\PhotoshopCS6Portable.exe";
         private static string pathToPaint = "mspaint.exe";
 
-        public OpenEditingProgram()
-        {
-        }
-
         public static async Task Open()
         {
             await Task.Run(() => {

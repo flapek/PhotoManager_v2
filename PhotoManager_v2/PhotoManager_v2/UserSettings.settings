@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PhotoManager_v2" GeneratedClassName="UserSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PathToEditingProgram" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mspaint.exe</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

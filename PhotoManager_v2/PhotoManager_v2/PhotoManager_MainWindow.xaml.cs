@@ -19,15 +19,12 @@ namespace PhotoManager_v2
 {
     public partial class MainWindow : Window
     {
-        DirectoryTreeWithoutIcon directoryTreeWithoutIcon = new DirectoryTreeWithoutIcon();                   //błąd wywołania 
+       //DirectoryTreeWithoutIcon directoryTreeWithoutIcon = new DirectoryTreeWithoutIcon();                   //Przepełnienie stosu
 
         public MainWindow()
         {
             InitializeComponent();
-            //MessageBox.Show("Hello! \nThere you can organize your own photo.");
-
-            directoryTreeWithoutIcon.LoadDirectories();
-            //LoadDirectories();
+            LoadDirectories();
         }
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
@@ -44,36 +41,35 @@ namespace PhotoManager_v2
                     win.Close();
                 }
             }
+            
         }
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            Image image = new Image();
-            Label label = new Label();
-
-
+           
             openFileDialog.InitialDirectory = @"C:\";
             openFileDialog.Filter = "JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tiff)|*.tiff|All Files (*.*)|*.*"; ;
             openFileDialog.Multiselect = true;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-            image.HorizontalAlignment = HorizontalAlignment.Center;
-            image.MaxHeight = 150;
-            image.MinHeight = 60;
-            image.MaxWidth = 150;
-            image.MinWidth = 60;
-            image.Stretch = Stretch.Uniform;
-
-
-
             if (openFileDialog.ShowDialog() == true)
             {
                 foreach (string filename in openFileDialog.FileNames)
                 {
+                    Image image = new Image();
+                    Label label = new Label();
+
+                    image.HorizontalAlignment = HorizontalAlignment.Center;
+                    image.MaxHeight = 150;
+                    image.MinHeight = 60;
+                    image.MaxWidth = 150;
+                    image.MinWidth = 60;
+                    image.Stretch = Stretch.Uniform;
+
                     image.Source = new BitmapImage(new Uri(filename));
                     label.Content = Path.GetFileName(filename);
-                    Slider.Children.Add(image);                     //wywala błąd podczas dodawania więcej niż jednego zdjęcia
+                    Slider.Children.Add(image);                     
                     Slider.Children.Add(label);
                 }
             }
@@ -88,7 +84,8 @@ namespace PhotoManager_v2
         }
         private void OptionMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            Option_Window option = new Option_Window();
+            option.Show();
         }
 
         /*------------------------------------------------------------------------------------------------------------------------*/

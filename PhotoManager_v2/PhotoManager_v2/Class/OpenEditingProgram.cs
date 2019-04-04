@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -11,28 +8,18 @@ namespace PhotoManager_v2.Class
     class OpenEditingProgram
     {
         private static string pathToPS = @"C:\Users\filap\Desktop\pscs6\PhotoshopCS6Portable.exe";
-        private static string pathToPaint = "mspaint.exe";
-
+       
         public static async Task Open()
         {
+            UserSettings userSettings = new UserSettings();
             await Task.Run(() => {
                 try
-                {
-                    ProcessStartInfo start_info = new ProcessStartInfo(pathToPaint);       //jak automatycznie otworzyć program z plikiem
+                {       
                     Process process = new Process();
-
-                    start_info.WindowStyle = ProcessWindowStyle.Maximized;
-                    process.StartInfo = start_info;
-
+                    process.StartInfo.FileName = userSettings.PathToEditingProgram;
+                    // process.StartInfo.Arguments = @"C:\Users\filap\Desktop\zdjęcia\studenckie otrzęsiny 26-10-2018\_DSC8277.jpg";       //ścieżka do zdjęcia 
                     process.Start();
-
-                    //ShowInTaskbar = false;
-                    //Hide();
-
                     process.WaitForExit();
-
-                    //ShowInTaskbar = true;
-                    //Show();
                 }
                 catch (Exception)
                 {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoManager_v2"
         mc:Ignorable="d"
-        Title="Option_Window" Height="300" Width="400" MinHeight="200" MaxHeight="400" MinWidth="300" MaxWidth="500">
+        Title="Option" Height="300" Width="400" MinHeight="200" MaxHeight="400" MinWidth="300" MaxWidth="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -13,14 +13,38 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0" Margin="5">
-            <Menu Margin="5" FontSize="20">
+            <Menu Margin="5" FontSize="16">
                 <MenuItem Header="_General"></MenuItem>
-                <MenuItem Header="_General"></MenuItem>
+                <MenuItem Header="_Source"></MenuItem>
                 <MenuItem Header="_General"></MenuItem>
             </Menu>
         </Grid>
 
         <Grid Grid.Column="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition MaxHeight="40"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Margin="5" Grid.Column="0">
+                    <Button x:Name="SaveOptionButton" Margin="5" Content="Save"/>
+                </Grid>
+                
+                <Grid Margin="5" Grid.Column="1">
+                    <Button x:Name="DefaultOptionButton" Margin="5" Content="Default"/>
+                </Grid>
+                
+                <Grid Margin="5" Grid.Column="2">
+                    <Button x:Name="CancelOptionButton" Margin="5" Content="Cancel"/>
+                </Grid>
+            </Grid>
             
         </Grid>
     </Grid>

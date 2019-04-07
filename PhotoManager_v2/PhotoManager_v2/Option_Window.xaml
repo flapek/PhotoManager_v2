@@ -5,47 +5,76 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoManager_v2"
         mc:Ignorable="d"
-        Title="Option" Height="300" Width="400" MinHeight="200" MaxHeight="400" MinWidth="300" MaxWidth="500">
+        Title="Option" Height="360" Width="640" MinHeight="180" MaxHeight="720" MinWidth="300" MaxWidth="1080">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0" Margin="5">
-            <Menu Margin="5" FontSize="16">
-                <MenuItem Header="_General"></MenuItem>
-                <MenuItem Header="_Source"></MenuItem>
-                <MenuItem Header="_General"></MenuItem>
+            <Menu Margin="5" FontSize="16" Padding="5">
+                <MenuItem Header="_General" Margin="2"></MenuItem>
+                <MenuItem Header="_Source" Margin="2"></MenuItem>
+                <MenuItem Header="_General" Margin="2"></MenuItem>
             </Menu>
         </Grid>
 
         <Grid Grid.Column="1" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition MaxHeight="40"/>
+                <RowDefinition MaxHeight="50"/>
             </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="0">Editing program source</TextBlock>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBox x:Name="SourceEditingProgramTextBox" Margin="10" Grid.Column="0"/>
+                    <Button x:Name="SearchProgramPathButton" Margin="5" Padding="5" Content="Search program" Grid.Column="1" Click="SearchProgramPathButton_Click"/>
+                </Grid>
+               
+            </Grid>
+            
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Margin="5" Grid.Column="0">
-                    <Button x:Name="SaveOptionButton" Margin="5" Content="Save"/>
+                    <Button x:Name="SaveOptionButton" Margin="5" Content="Save" Click="SaveOptionButton_Click"/>
                 </Grid>
                 
                 <Grid Margin="5" Grid.Column="1">
-                    <Button x:Name="DefaultOptionButton" Margin="5" Content="Default"/>
+                    <Button x:Name="DefaultOptionButton" Margin="5" Content="Default" Click="DefaultOptionButton_Click"/>
+                </Grid>
+
+                <Grid Margin="5" Grid.Column="2">
+                    <Button x:Name="OkOptionButton" Margin="5" Content="Ok" Click="OkOptionButton_Click"/>
                 </Grid>
                 
-                <Grid Margin="5" Grid.Column="2">
-                    <Button x:Name="CancelOptionButton" Margin="5" Content="Cancel"/>
+                <Grid Margin="5" Grid.Column="3">
+                    <Button x:Name="CancelOptionButton" Margin="5" Content="Cancel" Click="CancelOptionButton_Click"/>
                 </Grid>
             </Grid>
-            
+
         </Grid>
     </Grid>
 </Window>

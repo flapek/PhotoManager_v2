@@ -8,7 +8,7 @@ namespace PhotoManager_v2
 {
     class Constants
     {
-        public const string ErrorProgramFileNameIsFail = "File name or path is wrong!"; 
-
+        public const string ErrorProgramFileNameIsFail = "File name or path is wrong!";
+        public const string CaptionNameOption = "Option";
     }
 }

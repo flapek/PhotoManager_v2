@@ -13,7 +13,6 @@ namespace PhotoManager_v2.Class.Photo
         public PhotoDimensions Dimensions { set; get; }
         public double Size { set; get; }
         public List<Author> Author { set; get; }
-        public string TypeOfElement { set; get; }
         public List<string> Tags { set; get; }
         public string PathFolder { set; get; }
         public string Comment { set; get; }

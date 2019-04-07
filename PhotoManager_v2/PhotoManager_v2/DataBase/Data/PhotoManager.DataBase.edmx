@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PhotoManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="AuthorId" />
+          </Key>
+          <Property Name="AuthorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="60" />
+          <Property Name="LastName" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="PhotoId" />
+          </Key>
+          <Property Name="PhotoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhotoName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateOfExecutin" Type="date" />
+          <Property Name="AuthorId" Type="int" />
+          <Property Name="TagId" Type="int" />
+          <Property Name="Height" Type="int" Nullable="false" />
+          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="Size" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PathFolder" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="1000" />
+          <Property Name="ApertureUnit" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ExposureTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FocalLenght" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tag" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <Association Name="FK__Photo__AuthorId__52593CB8">
+          <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photo__TagId__534D60F1">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhotoManagerModelStoreContainer">
+          <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Photo__AuthorId__52593CB8" Association="Self.FK__Photo__AuthorId__52593CB8">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photo__TagId__534D60F1" Association="Self.FK__Photo__TagId__534D60F1">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhotoManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="AuthorId" />
+          </Key>
+          <Property Name="AuthorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK__Photo__AuthorId__52593CB8" FromRole="Authors" ToRole="Photo" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="PhotoId" />
+          </Key>
+          <Property Name="PhotoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhotoName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfExecutin" Type="DateTime" Precision="0" />
+          <Property Name="AuthorId" Type="Int32" />
+          <Property Name="TagId" Type="Int32" />
+          <Property Name="Height" Type="Int32" Nullable="false" />
+          <Property Name="Width" Type="Int32" Nullable="false" />
+          <Property Name="Size" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PathFolder" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ApertureUnit" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ExposureTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FocalLenght" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Authors" Relationship="Self.FK__Photo__AuthorId__52593CB8" FromRole="Photo" ToRole="Authors" />
+          <NavigationProperty Name="Tags" Relationship="Self.FK__Photo__TagId__534D60F1" FromRole="Photo" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tag" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK__Photo__TagId__534D60F1" FromRole="Tags" ToRole="Photo" />
+        </EntityType>
+        <Association Name="FK__Photo__AuthorId__52593CB8">
+          <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photo__TagId__534D60F1">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhotoManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="Self.Authors" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" />
+          <AssociationSet Name="FK__Photo__AuthorId__52593CB8" Association="Self.FK__Photo__AuthorId__52593CB8">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photo__TagId__534D60F1" Association="Self.FK__Photo__TagId__534D60F1">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhotoManagerModelStoreContainer" CdmEntityContainer="PhotoManagerEntities">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="PhotoManagerModel.Authors">
+              <MappingFragment StoreEntitySet="Authors">
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photo">
+            <EntityTypeMapping TypeName="PhotoManagerModel.Photo">
+              <MappingFragment StoreEntitySet="Photo">
+                <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
+                <ScalarProperty Name="PhotoName" ColumnName="PhotoName" />
+                <ScalarProperty Name="DateOfExecutin" ColumnName="DateOfExecutin" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="PathFolder" ColumnName="PathFolder" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ApertureUnit" ColumnName="ApertureUnit" />
+                <ScalarProperty Name="ExposureTime" ColumnName="ExposureTime" />
+                <ScalarProperty Name="FocalLenght" ColumnName="FocalLenght" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="PhotoManagerModel.Tags">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

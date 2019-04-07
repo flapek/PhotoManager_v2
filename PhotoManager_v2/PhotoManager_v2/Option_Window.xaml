@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoManager_v2"
         mc:Ignorable="d"
-        Title="Option" Height="360" Width="640" MinHeight="180" MaxHeight="720" MinWidth="300" MaxWidth="1080">
+        Title="Option" Height="360" Width="640" MinHeight="300" MaxHeight="400" MinWidth="300" MaxWidth="1080">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150" MaxWidth="150" MinWidth="100"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 

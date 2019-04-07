@@ -13,6 +13,7 @@ using Microsoft.Win32;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.DirectoryTree;
 using PhotoManager_v2.Class.Photo;
+using PhotoManager_v2.DataBase.Data;
 using Path = System.IO.Path;
 
 namespace PhotoManager_v2
@@ -74,10 +75,7 @@ namespace PhotoManager_v2
                 }
             }
         }
-        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+     
         private async void EditInOtherProgramMenuItem_ClickAsync(object sender, RoutedEventArgs e)
         {
             await OpenEditingProgram.Open();

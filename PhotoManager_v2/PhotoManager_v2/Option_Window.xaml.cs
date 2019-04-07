@@ -61,5 +61,6 @@ namespace PhotoManager_v2
             /* Zrobić obsługę sprawdzającą czy jakieś zmiany nie zostały wprowadzone w opcjach. Jeżeli tak to powinno wyskakiwać okno dialogowe czy na pewno zapisać zmiany.*/
             this.Close();
         }
+
     }
 }

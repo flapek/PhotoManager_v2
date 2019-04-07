@@ -8,19 +8,19 @@
         Title="Option" Height="360" Width="640" MinHeight="180" MaxHeight="720" MinWidth="300" MaxWidth="1080">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150" MaxWidth="150" MinWidth="100"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0" Margin="5">
             <Menu Margin="5" FontSize="16" Padding="5">
-                <MenuItem Header="_General" Margin="2"></MenuItem>
-                <MenuItem Header="_Source" Margin="2"></MenuItem>
+                <MenuItem x:Name="GeneralSettingsMenuItem" Header="_General" Margin="2"></MenuItem>
+                <MenuItem x:Name="SourceSettingsMenuItem" Header="_Source" Margin="2"></MenuItem>
                 <MenuItem Header="_General" Margin="2"></MenuItem>
             </Menu>
         </Grid>
 
-        <Grid Grid.Column="1" Margin="5">
+        <Grid x:Name="SourceOptionGrid" Grid.Column="1" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition MaxHeight="50"/>
@@ -30,24 +30,28 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="0">Editing program source</TextBlock>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBox x:Name="SourceEditingProgramTextBox" Margin="10" Grid.Column="0"/>
-                    <Button x:Name="SearchProgramPathButton" Margin="5" Padding="5" Content="Search program" Grid.Column="1" Click="SearchProgramPathButton_Click"/>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="0">Editing program source</TextBlock>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="SourceEditingProgramTextBox" Margin="10" Grid.Column="0"/>
+                        <Button x:Name="SearchProgramPathButton" Margin="5" Padding="5" Content="Search program" Grid.Column="1" Click="SearchProgramPathButton_Click"/>
+                    </Grid>
                 </Grid>
-               
+                
             </Grid>
             
             <Grid Grid.Row="1">

@@ -16,7 +16,7 @@ namespace PhotoManager_v2.Class.Open
             this.textBox = textBox;
         }
 
-        public async void OpenProgram()
+        public void OpenProgram()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 

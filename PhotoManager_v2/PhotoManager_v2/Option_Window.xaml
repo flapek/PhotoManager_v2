@@ -51,6 +51,10 @@
                         <Button x:Name="SearchProgramPathButton" Margin="5" Padding="5" Content="Search program" Grid.Column="1" Click="SearchProgramPathButton_Click"/>
                     </Grid>
                 </Grid>
+
+                <Grid Grid.Row="1" Margin="5" Background="LightGray">
+                    <TextBlock x:Name="HintOpenProgramTextBlock" Margin="5" Padding="5" FontSize="14"/>
+                </Grid>
                 
             </Grid>
             

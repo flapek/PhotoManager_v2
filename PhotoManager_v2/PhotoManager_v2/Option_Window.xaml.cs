@@ -26,6 +26,7 @@ namespace PhotoManager_v2
         {
             InitializeComponent();
             SourceEditingProgramTextBox.Text = userSettings.PathToEditingProgram;
+            HintOpenProgramTextBlock.Text = Constants.OptionHintForOpenEditingProgram;
         }
 
         private void SaveOptionButton_Click(object sender, RoutedEventArgs e)

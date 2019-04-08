@@ -29,10 +29,10 @@
 
             </Grid>
 
-            <Grid x:Name="SourceOptionGrid" Grid.Row="0" Visibility="Hidden">
+            <Grid x:Name="SourceOptionGrid" Grid.Row="0" Visibility="Visible">
                 <Grid Grid.Row="0" Margin="5">
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
+                        <RowDefinition Height="2*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
@@ -41,9 +41,10 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="0">Editing program source</TextBlock>
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="0">Editing program source</TextBlock>
 
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -52,12 +53,24 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBox x:Name="SourceEditingProgramTextBox" Margin="10" Grid.Column="0"/>
-                            <Button x:Name="SearchProgramPathButton" Margin="5" Padding="5" Content="Search program" Grid.Column="1" Click="SearchProgramPathButton_Click"/>
+                            <Button x:Name="SearchProgramPathButton" Margin="5" Padding="5" Content="Search" Grid.Column="1" Click="SearchProgramPathButton_Click"/>
+                        </Grid>
+
+                        <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Grid.Row="2">Source to main folder</TextBlock>
+
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="SourceToMainFolderTextBox" Margin="10" Grid.Column="0"/>
+                            <Button x:Name="SearchMainFolderPathButton" Margin="5" Padding="5" Content="Search" Grid.Column="1" Click="SearchMainFolderPathButton_Click"/>
                         </Grid>
                     </Grid>
 
                     <Grid Grid.Row="1" Margin="5" Background="LightGray">
-                        <TextBlock x:Name="HintOpenProgramTextBlock" Margin="5" Padding="5" FontSize="14"/>
+                        <TextBlock x:Name="HintOpenProgramTextBlock" TextWrapping="WrapWithOverflow" Margin="5" Padding="5" FontSize="14"/>
                     </Grid>
 
                 </Grid>

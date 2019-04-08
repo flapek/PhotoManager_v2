@@ -5,5 +5,8 @@
     <Setting Name="PathToEditingProgram" Type="System.String" Scope="User">
       <Value Profile="(Default)">mspaint.exe</Value>
     </Setting>
+    <Setting Name="PathToMainFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

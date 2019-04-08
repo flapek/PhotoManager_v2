@@ -11,18 +11,22 @@ namespace PhotoManager_v2.Class.Open
     class FileExplorer
     {
         private TextBox textBox = new TextBox();
-        public FileExplorer(TextBox textBox)
+        private OpenFileDialog openFileDialog = new OpenFileDialog();
+        public FileExplorer(TextBox textBox, string openFileDialogFilter,bool openFileDialogMultiselect)
         {
             this.textBox = textBox;
+            openFileDialog.Filter = openFileDialogFilter;
+            openFileDialog.Multiselect = openFileDialogMultiselect;
+        }
+        public FileExplorer(TextBox textBox) //jak zrobić aby można było wybierać folder zamiast pliku 
+        {
+            this.textBox = textBox;
+            openFileDialog.Multiselect = false;
         }
 
         public void OpenProgram()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
             openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.Filter = "EXE (*.exe)|*.exe"; ;
-            openFileDialog.Multiselect = false;
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
             if (openFileDialog.ShowDialog() == true)

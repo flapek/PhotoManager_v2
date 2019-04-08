@@ -6,16 +6,17 @@ using System.Windows;
 namespace PhotoManager_v2.Class
 {
     class OpenEditingProgram
-    {       
-        public static async Task Open()
+    {
+        public static async Task Open(string pathToPhoto = null)
         {
             Process process = new Process();
             UserSettings userSettings = new UserSettings();
-            await Task.Run(() => {
+            await Task.Run(() =>
+            {
                 try
-                {       
+                {
                     process.StartInfo.FileName = userSettings.PathToEditingProgram;
-                    // process.StartInfo.Arguments = @"C:\Users\filap\Desktop\zdjęcia\studenckie otrzęsiny 26-10-2018\_DSC8277.jpg";       //ścieżka do zdjęcia 
+                    process.StartInfo.Arguments = pathToPhoto;       //Dlaczego niektóre ścieżki do zdjęcia nie działają jak np.: @"C:\Users\filap\Desktop\zdjęcia\studenckie otrzęsiny 26-10-2018\_DSC8277.jpg"
                     process.Start();
                     process.WaitForExit();
                 }
@@ -24,7 +25,7 @@ namespace PhotoManager_v2.Class
                     MessageBox.Show(Constants.ErrorProgramFileNameIsFail, "Error", MessageBoxButton.OK);
                 }
             });
-           
+
         }
     }
 }

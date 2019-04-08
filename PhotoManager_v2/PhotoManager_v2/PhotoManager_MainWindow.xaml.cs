@@ -20,10 +20,12 @@ namespace PhotoManager_v2
 {
     public partial class MainWindow : Window
     {
+        Tree tree = new Tree(); 
         public MainWindow()
         {
             InitializeComponent();
-            LoadDirectories();
+            //LoadDirectories();
+            tree.LoadDirectories(@"C:\Users\filap\Desktop", DirectoryTreeView);
         }
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
@@ -75,14 +77,14 @@ namespace PhotoManager_v2
         }
         private async void EditInOtherProgramMenuItem_ClickAsync(object sender, RoutedEventArgs e)
         {
-            await OpenEditingProgram.Open();
+            await OpenEditingProgram.Open();        //Dodać event który będzie odwoływać się do ścieżki danego zdjęcia i będzie przekazywał do programu w którym będzie edytowane zdjęcie
         }
         private void OptionMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Option_Window option = new Option_Window();
             option.Show();
         }
-
+       
         /*------------------------------------------------------------------------------------------------------------------------*/
         /*                                              Przenieść do osobnej klasy                                              */
         private void LoadDirectories()
@@ -215,7 +217,8 @@ namespace PhotoManager_v2
                 ExploreFiles(item);
                 Cursor = Cursors.Arrow;
             }
-        }   
+        }
+
         /*------------------------------------------------------------------------------------------------------------------------*/
     }
 }

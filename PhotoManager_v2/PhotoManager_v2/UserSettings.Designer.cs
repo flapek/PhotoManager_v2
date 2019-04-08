@@ -34,5 +34,17 @@ namespace PhotoManager_v2 {
                 this["PathToEditingProgram"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PathToMainFolder {
+            get {
+                return ((string)(this["PathToMainFolder"]));
+            }
+            set {
+                this["PathToMainFolder"] = value;
+            }
+        }
     }
 }

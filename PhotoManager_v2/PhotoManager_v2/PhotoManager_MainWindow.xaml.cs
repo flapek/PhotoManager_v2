@@ -1,9 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,8 +10,6 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.DirectoryTree;
-using PhotoManager_v2.Class.Photo;
-using PhotoManager_v2.DataBase.Data;
 using Path = System.IO.Path;
 
 namespace PhotoManager_v2
@@ -24,8 +20,8 @@ namespace PhotoManager_v2
         public MainWindow()
         {
             InitializeComponent();
-            //LoadDirectories();
-            tree.LoadDirectories(@"C:\Users\filap\Desktop", DirectoryTreeView);
+            LoadDirectories();
+            //tree.LoadDirectories(@"C:\Users\filap\Desktop", DirectoryTreeView);
         }
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {

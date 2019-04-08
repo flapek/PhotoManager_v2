@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using static PhotoManager_v2.MainWindow;
 
 namespace PhotoManager_v2.Class.DirectoryTree
@@ -40,6 +41,8 @@ namespace PhotoManager_v2.Class.DirectoryTree
                     string[] fileList = Directory.GetFiles(source, "*", SearchOption.TopDirectoryOnly);
                     DirectoryInfo[] directoryInfo = new DirectoryInfo(source).GetDirectories();
 
+                    //błedy wywołania 
+
                     foreach (var file in directoryInfo)
                     {
                         //treeView.Items.Add(GetItem(file));
@@ -63,7 +66,7 @@ namespace PhotoManager_v2.Class.DirectoryTree
                 Tag = info,
             };
             this.AddDummy(item);
-            item.Expanded += new RoutedEventHandler(item_Expanded);
+            //item.Expanded += new RoutedEventHandler(item_Expanded);
             return item;
         }
         private TreeViewItem GetItem(FileInfo file)
@@ -144,18 +147,18 @@ namespace PhotoManager_v2.Class.DirectoryTree
                 }
             }
         }
-        void item_Expanded(object sender, RoutedEventArgs e)
-        {
-            var item = (TreeViewItem)sender;
-            if (HasDummy(item))
-            {
-                Cursor = Cursors.Wait;
-                RemoveDummy(item);
-                ExploreDirectories(item);
-                ExploreFiles(item);
-                Cursor = Cursors.Arrow;
-            }
-        }
+        //void item_Expanded(object sender, RoutedEventArgs e)
+        //{
+        //    var item = (TreeViewItem)sender;
+        //    if (HasDummy(item))
+        //    {
+        //        Cursor = Cursors.Wait;
+        //        RemoveDummy(item);
+        //        ExploreDirectories(item);
+        //        ExploreFiles(item);
+        //        Cursor = Cursors.Arrow;
+        //    }
+        //}
 
     }
 }

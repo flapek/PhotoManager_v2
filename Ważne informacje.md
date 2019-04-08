@@ -2,7 +2,7 @@
 
 # Klasy:
 1. do wyboru zdjęć z wybranego folderu 
-2. do otwarcia programu w którym będziemy mogli edytować nasze zdjęcie 
+2. do otwarcia programu w którym będziemy mogli edytować nasze zdjęcie |Done
 3. do prostej modyfikacji wybranego zdjęcia np.(możliwość nadpisania pliku albo utworzenia nowego przy zapisie zmian):
   - rotacja
   - kadrowanie

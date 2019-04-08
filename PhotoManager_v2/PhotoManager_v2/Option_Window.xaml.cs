@@ -46,11 +46,6 @@ namespace PhotoManager_v2
             }
         }
 
-        private void CancelOptionButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void SearchProgramPathButton_Click(object sender, RoutedEventArgs e)
         {
             FileExplorer file = new FileExplorer(SourceEditingProgramTextBox);
@@ -63,5 +58,16 @@ namespace PhotoManager_v2
             this.Close();
         }
 
+        private void GeneralSettingsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralOptionGrid.Visibility = Visibility.Visible;
+            SourceOptionGrid.Visibility = Visibility.Hidden;
+        }
+
+        private void SourceSettingsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            SourceOptionGrid.Visibility = Visibility.Visible;
+            GeneralOptionGrid.Visibility = Visibility.Hidden;
+        }
     }
 }

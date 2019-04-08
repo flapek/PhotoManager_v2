@@ -6,9 +6,7 @@ using System.Windows;
 namespace PhotoManager_v2.Class
 {
     class OpenEditingProgram
-    {
-        private static string pathToPS = @"C:\Users\filap\Desktop\pscs6\PhotoshopCS6Portable.exe";
-       
+    {       
         public static async Task Open()
         {
             Process process = new Process();

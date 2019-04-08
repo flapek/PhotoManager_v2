@@ -6,7 +6,16 @@
         xmlns:local="clr-namespace:PhotoManager_v2"
         mc:Ignorable="d"
         Title="PhotoManager" Height="450" Width="800" MinHeight="300" MinWidth="500" Closing="MainWindow_Closing">
-    <Grid>        
+    <Window.Resources>
+        <Style TargetType="{x:Type TreeViewItem}">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition x:Name="OptionPanel" Height="auto"/>
             <RowDefinition/>
@@ -19,13 +28,14 @@
             <DockPanel Grid.Column="0">
                 <Menu>
                     <MenuItem Header="_File">
+                        <MenuItem Header="_Open folder"/>
                         <MenuItem Header="_Save"/>
-                        <MenuItem x:Name="OptionMenuItem" Header="_Option"/>
+                        <MenuItem Header="Sa_ve as"/>
                         <Separator/>
                         <MenuItem x:Name="ExitMenuItem" Header="E_xit"/>
                     </MenuItem>
                     <MenuItem Header="_Edit">
-                        <MenuItem Header="_Fast edit"/>
+                        <MenuItem x:Name="FastEditMenuItem" Header="_Fast edit"/>
                         <MenuItem x:Name="EditInOtherProgramMenuItem" Header="Edit in _other program" Click="EditInOtherProgramMenuItem_ClickAsync"/>
                     </MenuItem>
                     <MenuItem Header="_Option" Click="OptionMenuItem_Click"></MenuItem>
@@ -40,7 +50,26 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <TreeView Name="DirectoryTreeView" Margin="10,10,10,10" />
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TreeView Name="DirectoryTreeView" Margin="10"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Margin="5" Content="Add dictionary"/>
+                    <Button Grid.Column="1" Margin="5" Content="Add file"/>
+                    <Button Grid.Column="2" Margin="5" Content="Delete"/>
+                </Grid>
             </Grid>
 
             <Grid Grid.Column="1">

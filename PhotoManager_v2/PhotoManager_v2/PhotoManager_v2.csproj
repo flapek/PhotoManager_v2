@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Class\DirectoryTree\Tree.cs" />
     <Compile Include="Class\Open\FileExplorer.cs" />
     <Compile Include="DataBase\Data\Authors.cs">
       <DependentUpon>PhotoManager.tt</DependentUpon>
@@ -110,8 +111,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Class\Constants\Constants.cs" />
-    <Compile Include="Class\DirectoryTree\DirectoryTreeWithoutIcon.cs" />
-    <Compile Include="Class\DirectoryTree\DummyTreeViewItem.cs" />
     <Compile Include="Class\OpenEditingProgram.cs" />
     <Compile Include="Class\Photo\Author.cs" />
     <Compile Include="Class\Photo\Photo.cs" />

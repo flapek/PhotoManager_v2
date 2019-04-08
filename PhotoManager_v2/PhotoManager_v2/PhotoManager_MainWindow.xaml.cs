@@ -20,8 +20,6 @@ namespace PhotoManager_v2
 {
     public partial class MainWindow : Window
     {
-       //DirectoryTreeWithoutIcon directoryTreeWithoutIcon = new DirectoryTreeWithoutIcon();                   //Przepełnienie stosu
-
         public MainWindow()
         {
             InitializeComponent();
@@ -75,7 +73,6 @@ namespace PhotoManager_v2
                 }
             }
         }
-     
         private async void EditInOtherProgramMenuItem_ClickAsync(object sender, RoutedEventArgs e)
         {
             await OpenEditingProgram.Open();
@@ -218,8 +215,7 @@ namespace PhotoManager_v2
                 ExploreFiles(item);
                 Cursor = Cursors.Arrow;
             }
-        }
+        }   
         /*------------------------------------------------------------------------------------------------------------------------*/
-
     }
 }

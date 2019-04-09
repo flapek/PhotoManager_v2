@@ -1,17 +1,7 @@
 ﻿using PhotoManager_v2.Class.Open;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace PhotoManager_v2
 {
@@ -34,7 +24,7 @@ namespace PhotoManager_v2
             userSettings.PathToEditingProgram = SourceEditingProgramTextBox.Text;
             userSettings.PathToMainFolder = SourceToMainFolderTextBox.Text;
             userSettings.Save();
-        }
+        }      //skończone
 
         private void DefaultOptionButton_Click(object sender, RoutedEventArgs e)
         {
@@ -50,26 +40,24 @@ namespace PhotoManager_v2
 
         private void SearchProgramPathButton_Click(object sender, RoutedEventArgs e)
         {
-            FileExplorer file = new FileExplorer(SourceEditingProgramTextBox, "EXE (*.exe)|*.exe", false);
-            file.OpenProgram();
+            FileExplorer file = new FileExplorer("EXE (*.exe)|*.exe", false);
+            file.Open(SourceEditingProgramTextBox, Environment.SpecialFolder.MyComputer);
         }
         private void SearchMainFolderPathButton_Click(object sender, RoutedEventArgs e)
         {
-            FileExplorer file = new FileExplorer(SourceToMainFolderTextBox); //dokończyć
-            file.OpenProgram();
+            FileExplorer file = new FileExplorer("", false); //dokończyć ------ jak zrobić aby można było wybierać folder
+            file.Open(SourceToMainFolderTextBox, Environment.SpecialFolder.UserProfile);
         }
         private void OkOptionButton_Click(object sender, RoutedEventArgs e)
         {
-            /* Zrobić obsługę sprawdzającą czy jakieś zmiany nie zostały wprowadzone w opcjach. Jeżeli tak to powinno wyskakiwać okno dialogowe czy na pewno zapisać zmiany.*/
-            this.Close();
-        }
-
+            
+            Close();
+        }    /* Zrobić obsługę sprawdzającą czy jakieś zmiany nie zostały wprowadzone w opcjach. Jeżeli tak to powinno wyskakiwać okno dialogowe czy na pewno zapisać zmiany.*/
         private void GeneralSettingsMenuItem_Click(object sender, RoutedEventArgs e)
         {
             GeneralOptionGrid.Visibility = Visibility.Visible;
             SourceOptionGrid.Visibility = Visibility.Hidden;
         }
-
         private void SourceSettingsMenuItem_Click(object sender, RoutedEventArgs e)
         {
             SourceOptionGrid.Visibility = Visibility.Visible;

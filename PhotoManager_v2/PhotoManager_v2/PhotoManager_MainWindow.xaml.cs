@@ -10,18 +10,19 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.DirectoryTree;
+using PhotoManager_v2.Class.Open;
 using Path = System.IO.Path;
 
 namespace PhotoManager_v2
 {
     public partial class MainWindow : Window
     {
-        Tree tree = new Tree(); 
+        Tree tree = new Tree();
         public MainWindow()
         {
             InitializeComponent();
             LoadDirectories();
-            //tree.LoadDirectories(@"C:\Users\filap\Desktop", DirectoryTreeView);
+            //tree.LoadDirectories(@"C:\Users\filap\Desktop", DirectoryTreeView);       //błąd wywołania
         }
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
@@ -38,21 +39,15 @@ namespace PhotoManager_v2
                     win.Close();
                 }
             }
-            
+
         }
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-           
-            openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.Filter = "JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tiff)|*.tiff|All Files (*.*)|*.*"; ;
-            openFileDialog.Multiselect = true;
-            openFileDialog.RestoreDirectory = true;
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-            if (openFileDialog.ShowDialog() == true)
+            FileExplorer fileExplorer = new FileExplorer("JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tiff)|*.tiff|All Files (*.*)|*.*", true);
+            var files = fileExplorer.Open(Environment.SpecialFolder.Desktop);
+            if (fileExplorer.verificate == true)
             {
-                foreach (string filename in openFileDialog.FileNames)
+                foreach (string filename in files.FileNames)
                 {
                     Image image = new Image();
                     Label label = new Label();
@@ -62,14 +57,17 @@ namespace PhotoManager_v2
                     image.MinHeight = 60;
                     image.MaxWidth = 150;
                     image.MinWidth = 60;
+                    image.Height = 100;
+                    image.Width = 80;
                     image.Stretch = Stretch.Uniform;
 
                     image.Source = new BitmapImage(new Uri(filename));
                     label.Content = Path.GetFileName(filename);
-                    Slider.Children.Add(image);                     
+                    Slider.Children.Add(image);
                     Slider.Children.Add(label);
                 }
             }
+
         }
         private async void EditInOtherProgramMenuItem_ClickAsync(object sender, RoutedEventArgs e)
         {
@@ -80,7 +78,7 @@ namespace PhotoManager_v2
             Option_Window option = new Option_Window();
             option.Show();
         }
-       
+
         /*------------------------------------------------------------------------------------------------------------------------*/
         /*                                              Przenieść do osobnej klasy                                              */
         private void LoadDirectories()

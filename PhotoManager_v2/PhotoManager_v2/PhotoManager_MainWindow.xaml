@@ -72,11 +72,13 @@
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition x:Name="ImagePanel" Height="2*"/>
-                    <RowDefinition x:Name="SliderPanel" MaxHeight="200" MinHeight="80"/>
+                    <RowDefinition x:Name="SliderPanel" MaxHeight="200" Height="100" MinHeight="80"/>
                 </Grid.RowDefinitions>
+                
                 <Grid Grid.Row="0">
                     <Button x:Name="AddPhotoButton" Content="Add photo" Width="80" Height="30" Margin="-290,30,0,0" Click="AddPhotoButton_Click"/>
                 </Grid>
+                
                 <Grid Grid.Row="1" Background="LightGray" Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

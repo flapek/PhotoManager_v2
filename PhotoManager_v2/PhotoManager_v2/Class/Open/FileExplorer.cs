@@ -12,22 +12,19 @@ namespace PhotoManager_v2.Class.Open
     {
         private TextBox textBox = new TextBox();
         private OpenFileDialog openFileDialog = new OpenFileDialog();
-        public FileExplorer(TextBox textBox, string openFileDialogFilter,bool openFileDialogMultiselect)
+        internal bool verificate = false;
+        public FileExplorer(string openFileDialogFilter, bool openFileDialogMultiselect)
         {
-            this.textBox = textBox;
             openFileDialog.Filter = openFileDialogFilter;
             openFileDialog.Multiselect = openFileDialogMultiselect;
         }
-        public FileExplorer(TextBox textBox) //jak zrobić aby można było wybierać folder zamiast pliku 
-        {
-            this.textBox = textBox;
-            openFileDialog.Multiselect = false;
-        }
 
-        public void OpenProgram()
+        public void Open(TextBox textBox, Environment.SpecialFolder specialFolder)
         {
             openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(specialFolder);
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
 
             if (openFileDialog.ShowDialog() == true)
             {
@@ -35,6 +32,19 @@ namespace PhotoManager_v2.Class.Open
             }
 
         }
+        public OpenFileDialog Open(Environment.SpecialFolder specialFolder)
+        {
+            openFileDialog.InitialDirectory = @"C:\";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(specialFolder);
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
 
+            if (openFileDialog.ShowDialog() == true)
+            {
+                verificate = true;
+                return openFileDialog;
+            }
+            else return null;
+        }
     }
 }

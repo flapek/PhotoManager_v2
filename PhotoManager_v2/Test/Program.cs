@@ -14,10 +14,14 @@ namespace Test
             try
             {
                 string[] dirs = Directory.GetDirectories(@"c:\", "*", SearchOption.TopDirectoryOnly);
-                Console.WriteLine("The number of directories starting with p is {0}.", dirs.Length);
-                foreach (string dir in dirs)
+
+                DirectoryInfo directoryInfo = new DirectoryInfo(@"C:\Users\filap\Desktop");
+                DirectoryInfo[] directoryInfos = directoryInfo.GetDirectories();
+
+                Console.WriteLine("The number of directories starting with p is {0}.", directoryInfos.Length);
+                foreach (DirectoryInfo dir in directoryInfos)
                 {
-                    Console.WriteLine(dir);
+                    Console.WriteLine(dir.Name + "\t" + dir.FullName + "\t" + dir.Attributes);
                 }
             }
             catch (Exception e)

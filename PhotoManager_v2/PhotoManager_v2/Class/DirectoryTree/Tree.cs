@@ -39,14 +39,14 @@ namespace PhotoManager_v2.Class.DirectoryTree
                 try
                 {
                     string[] fileList = Directory.GetFiles(source, "*", SearchOption.TopDirectoryOnly);
-                    DirectoryInfo[] directoryInfo = new DirectoryInfo(source).GetDirectories();
-
+                    DirectoryInfo directoryInfo = new DirectoryInfo(source);
+                    DirectoryInfo[] directoryInfos = directoryInfo.GetDirectories();
                     //błedy wywołania 
 
-                    foreach (var file in directoryInfo)
+                    foreach (DirectoryInfo directory in directoryInfos.OrderBy(x=>x.Name))
                     {
-                        //treeView.Items.Add(GetItem(file));
-                        treeView.Items.Add(GetItem(file));
+                        treeView.Items.Add(directory.Name);
+                        //treeView.Items.Add(GetItem(directory));
                     }
                 }
                 catch (DirectoryNotFoundException ex)

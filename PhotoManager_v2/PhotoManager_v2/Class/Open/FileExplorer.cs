@@ -13,12 +13,12 @@ namespace PhotoManager_v2.Class.Open
         private TextBox textBox = new TextBox();
         private OpenFileDialog openFileDialog = new OpenFileDialog();
         internal bool verificate = false;
+
         public FileExplorer(string openFileDialogFilter, bool openFileDialogMultiselect)
         {
             openFileDialog.Filter = openFileDialogFilter;
             openFileDialog.Multiselect = openFileDialogMultiselect;
         }
-
         public void Open(TextBox textBox, Environment.SpecialFolder specialFolder)
         {
             openFileDialog.InitialDirectory = @"C:\";

@@ -67,8 +67,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Class\DirectoryTree\Dictionary.cs" />
     <Compile Include="Class\DirectoryTree\Tree.cs" />
     <Compile Include="Class\Open\FileExplorer.cs" />
+    <Compile Include="Class\Workers\Slider\SliderElements.cs" />
     <Compile Include="DataBase\Data\Authors.cs">
       <DependentUpon>PhotoManager.tt</DependentUpon>
     </Compile>
@@ -93,6 +95,7 @@
     <Compile Include="DataBase\Data\Tags.cs">
       <DependentUpon>PhotoManager.tt</DependentUpon>
     </Compile>
+    <Compile Include="SliderElement.cs" />
     <Compile Include="UserSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -111,7 +114,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Class\Constants\Constants.cs" />
-    <Compile Include="Class\OpenEditingProgram.cs" />
+    <Compile Include="Class\Open\OpenEditingProgram.cs" />
     <Compile Include="Class\Photo\Author.cs" />
     <Compile Include="Class\Photo\Photo.cs" />
     <Compile Include="Class\Photo\PhotoDimensions.cs" />

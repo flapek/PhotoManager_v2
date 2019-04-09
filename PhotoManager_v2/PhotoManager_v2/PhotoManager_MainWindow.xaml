@@ -71,8 +71,8 @@
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition x:Name="ImagePanel" Height="2*"/>
-                    <RowDefinition x:Name="SliderPanel" MaxHeight="200" Height="100" MinHeight="80"/>
+                    <RowDefinition x:Name="ImagePanel" Height="2.5*"/>
+                    <RowDefinition x:Name="SliderPanel" MaxHeight="180"/>
                 </Grid.RowDefinitions>
                 
                 <Grid Grid.Row="0">

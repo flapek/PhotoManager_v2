@@ -57,8 +57,11 @@ namespace PhotoManager_v2
         }
         private void SearchMainFolderPathButton_Click(object sender, RoutedEventArgs e)
         {
-            FileExplorer file = new FileExplorer("", false); //dokończyć ------ jak zrobić aby można było wybierać folder
-            file.Open(SourceToMainFolderTextBox, Environment.SpecialFolder.UserProfile);
+            //FileExplorer file = new FileExplorer("", false); 
+            //file.Open(SourceToMainFolderTextBox, Environment.SpecialFolder.UserProfile);
+
+            FolderExplorer folder = new FolderExplorer();
+            folder.Open(SourceToMainFolderTextBox);
         }
         private void OkOptionButton_Click(object sender, RoutedEventArgs e)
         {

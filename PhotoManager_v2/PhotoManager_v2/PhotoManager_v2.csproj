@@ -49,6 +49,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,6 +71,7 @@
     <Compile Include="Class\DirectoryTree\Dictionary.cs" />
     <Compile Include="Class\DirectoryTree\Tree.cs" />
     <Compile Include="Class\Open\FileExplorer.cs" />
+    <Compile Include="Class\Open\FolderExplorer.cs" />
     <Compile Include="Class\Workers\Slider\Slider.cs" />
     <Compile Include="DataBase\Data\Authors.cs">
       <DependentUpon>PhotoManager.tt</DependentUpon>

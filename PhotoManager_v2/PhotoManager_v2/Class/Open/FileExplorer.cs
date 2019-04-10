@@ -28,6 +28,7 @@ namespace PhotoManager_v2.Class.Open
 
             if (openFileDialog.ShowDialog() == true)
             {
+                verificate = true;
                 textBox.Text = openFileDialog.FileName;
             }
 

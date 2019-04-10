@@ -32,7 +32,7 @@ namespace PhotoManager_v2
                 {
                     win.Close();
                 }
-            }
+            }           //jak zamykać wszystkie otwarte okna na raz
 
         }
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
@@ -43,8 +43,8 @@ namespace PhotoManager_v2
             {
                 foreach (string filename in files.FileNames)
                 {
-                    SliderElements sliderElements = new SliderElements();
-                    sliderElements.SliderElement(filename, Slider);
+                    Slider slider = new Slider();
+                    slider.AddElement(filename, Slider);
                 }
             }
 

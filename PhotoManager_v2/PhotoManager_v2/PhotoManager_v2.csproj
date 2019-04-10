@@ -70,7 +70,7 @@
     <Compile Include="Class\DirectoryTree\Dictionary.cs" />
     <Compile Include="Class\DirectoryTree\Tree.cs" />
     <Compile Include="Class\Open\FileExplorer.cs" />
-    <Compile Include="Class\Workers\Slider\SliderElements.cs" />
+    <Compile Include="Class\Workers\Slider\Slider.cs" />
     <Compile Include="DataBase\Data\Authors.cs">
       <DependentUpon>PhotoManager.tt</DependentUpon>
     </Compile>

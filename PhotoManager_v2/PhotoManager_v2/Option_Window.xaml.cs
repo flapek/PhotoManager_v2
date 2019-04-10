@@ -12,6 +12,8 @@ namespace PhotoManager_v2
     {
         UserSettings userSettings = new UserSettings();
 
+        bool isDataDirty = false;
+
         public Option_Window()
         {
             InitializeComponent();
@@ -21,10 +23,14 @@ namespace PhotoManager_v2
 
         private void SaveOptionButton_Click(object sender, RoutedEventArgs e)
         {
-            userSettings.PathToEditingProgram = SourceEditingProgramTextBox.Text;
-            userSettings.PathToMainFolder = SourceToMainFolderTextBox.Text;
-            userSettings.Save();
-        }      //skończone
+            if (isDataDirty)
+            {
+                userSettings.PathToEditingProgram = SourceEditingProgramTextBox.Text;
+                userSettings.PathToMainFolder = SourceToMainFolderTextBox.Text;
+                userSettings.Save();
+                SaveOptionButton.IsEnabled = false;
+            }
+        }
 
         private void DefaultOptionButton_Click(object sender, RoutedEventArgs e)
         {
@@ -36,12 +42,18 @@ namespace PhotoManager_v2
                 SourceEditingProgramTextBox.Text = userSettings.PathToEditingProgram;
                 SourceToMainFolderTextBox.Text = userSettings.PathToMainFolder;
             }
-        }
+        }       //skończone
 
         private void SearchProgramPathButton_Click(object sender, RoutedEventArgs e)
         {
             FileExplorer file = new FileExplorer("EXE (*.exe)|*.exe", false);
             file.Open(SourceEditingProgramTextBox, Environment.SpecialFolder.MyComputer);
+            if (file.verificate)
+            {
+                isDataDirty = true;
+                SaveOptionButton.IsEnabled = true;
+            }
+
         }
         private void SearchMainFolderPathButton_Click(object sender, RoutedEventArgs e)
         {
@@ -50,7 +62,7 @@ namespace PhotoManager_v2
         }
         private void OkOptionButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             Close();
         }    /* Zrobić obsługę sprawdzającą czy jakieś zmiany nie zostały wprowadzone w opcjach. Jeżeli tak to powinno wyskakiwać okno dialogowe czy na pewno zapisać zmiany.*/
         private void GeneralSettingsMenuItem_Click(object sender, RoutedEventArgs e)
@@ -64,6 +76,6 @@ namespace PhotoManager_v2
             GeneralOptionGrid.Visibility = Visibility.Hidden;
         }
 
-
+        
     }
 }

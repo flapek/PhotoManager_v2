@@ -52,7 +52,7 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBox x:Name="SourceEditingProgramTextBox" Margin="10" Grid.Column="0"/>
+                            <TextBox x:Name="SourceEditingProgramTextBox" Margin="10" Grid.Column="0" TextChanged="SourceEditingProgramTextBox_TextChanged" />
                             <Button x:Name="SearchProgramPathButton" Margin="5" Padding="5" Content="Search" Grid.Column="1" Click="SearchProgramPathButton_Click"/>
                         </Grid>
 
@@ -64,7 +64,7 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBox x:Name="SourceToMainFolderTextBox" Margin="10" Grid.Column="0"/>
+                            <TextBox x:Name="SourceToMainFolderTextBox" Margin="10" Grid.Column="0" TextChanged="SourceToMainFolderTextBox_TextChanged"/>
                             <Button x:Name="SearchMainFolderPathButton" Margin="5" Padding="5" Content="Search" Grid.Column="1" Click="SearchMainFolderPathButton_Click"/>
                         </Grid>
                     </Grid>
@@ -85,7 +85,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Margin="5" Grid.Column="0">
-                    <Button x:Name="SaveOptionButton" Margin="5" Content="Save" Click="SaveOptionButton_Click"/>
+                    <Button x:Name="SaveOptionButton" Margin="5" Content="Save" Click="SaveOptionButton_Click" IsEnabled="False"/>
                 </Grid>
 
                 <Grid Margin="5" Grid.Column="1">

@@ -76,6 +76,20 @@ namespace PhotoManager_v2
             GeneralOptionGrid.Visibility = Visibility.Hidden;
         }
 
-        
+        private void SourceEditingProgramTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (!(userSettings.PathToEditingProgram == SourceEditingProgramTextBox.Text))
+                SaveOptionButton.IsEnabled = true;
+            else
+                SaveOptionButton.IsEnabled = false;
+        }       //poprawić funkcjonalność 
+
+        private void SourceToMainFolderTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (!(userSettings.PathToMainFolder == SourceToMainFolderTextBox.Text))
+                SaveOptionButton.IsEnabled = true;
+            else
+                SaveOptionButton.IsEnabled = false;
+        }       //poprawić funkcjonalność
     }
 }

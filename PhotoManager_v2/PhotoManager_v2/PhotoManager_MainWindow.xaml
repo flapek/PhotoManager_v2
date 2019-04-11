@@ -76,11 +76,12 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <Button x:Name="AddPhotoButton" Content="Add photo" Width="80" Height="30" Margin="-290,30,0,0" Click="AddPhotoButton_Click">
-                        <Button.Background>
-                            <ImageBrush/>
-                        </Button.Background>
-                    </Button>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="AddPhotoButton" Grid.Column="1" Content="Add photo" Width="80" Height="30" Click="AddPhotoButton_Click"/>
+                    <Image x:Name="ImageHandler" Margin="10" Grid.Column="0"/>
                 </Grid>
 
                 <Grid Grid.Row="1" Background="LightGray" Margin="5">

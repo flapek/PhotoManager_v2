@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.DirectoryTree;
 using PhotoManager_v2.Class.Open;
@@ -61,8 +62,9 @@ namespace PhotoManager_v2
 
         private void ButtonWithPhoto_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult message = MessageBox.Show("tak");
-        }
+            //ImageHandler.Source = new BitmapImage(new Uri(e.Source.ToString()));
+            ImageHandler.Source = new BitmapImage(new Uri(pathToPhoto));
+        }       //działa, dodać obsługo pobierającą ścieżke do zdjęcia aby wyświetlało się na panelu 
 
     }
 }

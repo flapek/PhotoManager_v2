@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -16,10 +12,11 @@ namespace PhotoManager_v2.Class.Workers.Slider
         private Image image = new Image();
         private Label label = new Label();
         private Grid grid = new Grid();
+        internal Button button = new Button();
 
         public Slider()
         {
-            Grid.SetRow(image, 0);
+            Grid.SetRow(button, 0);
             Grid.SetRow(label, 1);
 
             grid.Margin = new Thickness(10);
@@ -32,14 +29,14 @@ namespace PhotoManager_v2.Class.Workers.Slider
 
             label.HorizontalContentAlignment = HorizontalAlignment.Center;
 
-            grid.Children.Add(image);
+            grid.Children.Add(button);
             grid.Children.Add(label);
         }
 
         public void AddElement(string fileName, StackPanel stackPanel)
         {
-            image.Source = new BitmapImage(new Uri(fileName));
             label.Content = Path.GetFileName(fileName);
+            button.Background = new ImageBrush(image.Source = new BitmapImage(new Uri(fileName)));
 
             stackPanel.Children.Add(grid);
         }

@@ -11,6 +11,7 @@ namespace PhotoManager_v2
     public partial class MainWindow : Window
     {
         private Tree tree = new Tree();
+
         private string pathToPhoto = @"C:\Users\filap\Desktop\_DSC8277.jpg";        //do usunięcia jak już nie będzie potrzebne
         public MainWindow()
         {
@@ -44,6 +45,7 @@ namespace PhotoManager_v2
                 {
                     Slider slider = new Slider();
                     slider.AddElement(filename, Slider);
+                    slider.button.Click += ButtonWithPhoto_Click;
                 }
             }
         }
@@ -55,6 +57,11 @@ namespace PhotoManager_v2
         {
             Option_Window option = new Option_Window();
             option.Show();
+        }
+
+        private void ButtonWithPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult message = MessageBox.Show("tak");
         }
 
     }

@@ -101,7 +101,12 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0" Margin="5">
-                        <StackPanel x:Name="Slider" Orientation="Horizontal" Grid.ColumnSpan="3"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="16"/>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="SliderScrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden"/>
+                        <StackPanel x:Name="SliderStackPanel" Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="3"/>
                     </Grid>
                         
                     <Grid Grid.Column="1" Margin="5">

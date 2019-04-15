@@ -44,7 +44,7 @@ namespace PhotoManager_v2
                 foreach (string filename in files.FileNames)
                 {
                     Slider slider = new Slider();
-                    var picture = slider.AddElement(filename, Slider);
+                    var picture = slider.AddElement(filename, SliderStackPanel);
                     //picture.MouseLeftButtonDown += Image_MouseDown;//new MouseButtonEventHandler(Image_MouseDown);
                     //slider.grid.MouseEnter += BacklightSliderElement_MouseEnter;
                 }

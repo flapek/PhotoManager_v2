@@ -98,7 +98,6 @@
     <Compile Include="DataBase\Data\Tags.cs">
       <DependentUpon>PhotoManager.tt</DependentUpon>
     </Compile>
-    <Compile Include="SliderElement.cs" />
     <Compile Include="UserSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

@@ -37,7 +37,7 @@ namespace PhotoManager_v2 {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\")]
         public string PathToMainFolder {
             get {
                 return ((string)(this["PathToMainFolder"]));

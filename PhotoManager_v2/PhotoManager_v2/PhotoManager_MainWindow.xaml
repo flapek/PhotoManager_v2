@@ -80,7 +80,17 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="100"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="AddPhotoButton" Grid.Column="1" Content="Add photo" Width="80" Height="30" Click="AddPhotoButton_Click"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Button x:Name="AddPhotoButton" Grid.Row="1" Content="Add photo" Width="80" Height="30" Click="AddPhotoButton_Click"/>
+                    </Grid>
                     <Image x:Name="ImageHandler" Margin="10" Grid.Column="0"/>
                 </Grid>
 
@@ -90,7 +100,10 @@
                         <ColumnDefinition Width="100"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel x:Name="Slider" Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="3"/>
+                    <Grid Grid.Column="0" Margin="5">
+                        <StackPanel x:Name="Slider" Orientation="Horizontal" Grid.ColumnSpan="3"/>
+                    </Grid>
+                        
                     <Grid Grid.Column="1" Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>

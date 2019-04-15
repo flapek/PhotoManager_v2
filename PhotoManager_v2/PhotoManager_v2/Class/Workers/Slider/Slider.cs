@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using PhotoManager_v2.Class.Photo;
 
 namespace PhotoManager_v2.Class.Workers.Slider
 {
@@ -25,6 +24,7 @@ namespace PhotoManager_v2.Class.Workers.Slider
             Grid.SetRow(label, 1);
 
             image.HorizontalAlignment = HorizontalAlignment.Center;
+            image.VerticalAlignment = VerticalAlignment.Center;
             image.Margin = new Thickness(3);
             image.Stretch = Stretch.Uniform;
 
@@ -39,8 +39,9 @@ namespace PhotoManager_v2.Class.Workers.Slider
             //FileInfo fileInfo = new FileInfo(fileName);
             label.Content = Path.GetFileName(fileName);
             image.Source = new BitmapImage(new Uri(fileName));
-            
+
             stackPanel.Children.Add(grid);
+
             return image;
         }
     }

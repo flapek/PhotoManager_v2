@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.DirectoryTree;
 using PhotoManager_v2.Class.Open;
@@ -18,6 +19,7 @@ namespace PhotoManager_v2
         {
             InitializeComponent();
             tree.LoadDirectories(@"C:\Users\filap\Desktop", DirectoryTreeView);
+            //ImageHandler.Source = new BitmapImage(new Uri(pathToPhoto));
         }
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
@@ -44,13 +46,13 @@ namespace PhotoManager_v2
                 foreach (string filename in files.FileNames)
                 {
                     Slider slider = new Slider();
-                    var picture = slider.AddElement(filename, Slider);
+                    var picture = slider.AddElement(filename, SliderStackPanel);
                     //picture.MouseLeftButtonDown += Image_MouseDown;//new MouseButtonEventHandler(Image_MouseDown);
                     //slider.grid.MouseEnter += BacklightSliderElement_MouseEnter;
                 }
             }
         }
-        private async void EditInOtherProgramMenuItem_ClickAsync(object sender, RoutedEventArgs e)
+        private async void EditInOtherProgram_ClickAsync(object sender, RoutedEventArgs e)
         {
             await OpenEditingProgram.Open(pathToPhoto);        //Dodać event który będzie odwoływać się do ścieżki danego zdjęcia i będzie przekazywał do programu w którym będzie edytowane zdjęcie
         }

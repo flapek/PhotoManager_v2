@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Media.Imaging;
+using System.Windows.Input;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.DirectoryTree;
 using PhotoManager_v2.Class.Open;
@@ -17,7 +17,7 @@ namespace PhotoManager_v2
         public MainWindow()
         {
             InitializeComponent();
-            tree.LoadDirectories(@"C:\Users\filap\Desktop", DirectoryTreeView);       //błąd wywołania
+            tree.LoadDirectories(@"C:\Users\filap\Desktop", DirectoryTreeView);
         }
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
@@ -34,7 +34,6 @@ namespace PhotoManager_v2
                     win.Close();
                 }
             }           //jak zamykać wszystkie otwarte okna na raz
-
         }
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
@@ -45,8 +44,9 @@ namespace PhotoManager_v2
                 foreach (string filename in files.FileNames)
                 {
                     Slider slider = new Slider();
-                    slider.AddElement(filename, Slider);
-                    slider.button.Click += ButtonWithPhoto_Click;
+                    var picture = slider.AddElement(filename, Slider);
+                    //picture.MouseLeftButtonDown += Image_MouseDown;//new MouseButtonEventHandler(Image_MouseDown);
+                    //slider.grid.MouseEnter += BacklightSliderElement_MouseEnter;
                 }
             }
         }
@@ -59,11 +59,13 @@ namespace PhotoManager_v2
             Option_Window option = new Option_Window();
             option.Show();
         }
-
-        private void ButtonWithPhoto_Click(object sender, RoutedEventArgs e)
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //ImageHandler.Source = new BitmapImage(new Uri(e.Source.ToString()));
-            ImageHandler.Source = new BitmapImage(new Uri(pathToPhoto));
+            var v = e.Source;
+            //ImageHandler.Source = new BitmapImage(new Uri();
+
+            MessageBoxResult message = MessageBox.Show(v.ToString());
+
         }       //działa, dodać obsługo pobierającą ścieżke do zdjęcia aby wyświetlało się na panelu 
 
     }

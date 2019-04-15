@@ -47,6 +47,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
@@ -118,7 +119,7 @@
     <Compile Include="Class\Constants\Constants.cs" />
     <Compile Include="Class\Open\OpenEditingProgram.cs" />
     <Compile Include="Class\Photo\Author.cs" />
-    <Compile Include="Class\Photo\Photo.cs" />
+    <Compile Include="Class\Photo\Picture.cs" />
     <Compile Include="Class\Photo\PhotoDimensions.cs" />
     <Compile Include="Option_Window.xaml.cs">
       <DependentUpon>Option_Window.xaml</DependentUpon>

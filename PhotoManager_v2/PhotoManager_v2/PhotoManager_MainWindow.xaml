@@ -95,11 +95,13 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        
-                        <Image x:Name="ImageHandler" Margin="5" Grid.RowSpan="3" Grid.ColumnSpan="5"/>
+
+                        <ScrollViewer Grid.RowSpan="3" Grid.ColumnSpan="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <Image x:Name="ImageHandler" Margin="5"/>
+                        </ScrollViewer>
                         <Button x:Name="PreviousPictureButton" Margin="8" Grid.Row="1" Visibility="Visible"/>
                         <Button x:Name="NextPictureButton" Margin="8" Grid.Column="4" Grid.Row="1" Visibility="Visible"/>
-                    
+
                     </Grid>
 
                     <Grid Grid.Column="1">
@@ -110,8 +112,14 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
-                        <Button x:Name="AddPhotoButton" Grid.Row="1" Content="Add photo" Width="80" Height="30" Click="AddPhotoButton_Click"/>
+                        <Button x:Name="AddPhotoButton" Grid.Row="1" Grid.ColumnSpan="2" Content="Add photo" Margin="10" Click="AddPhotoButton_Click"/>
+                        <Button x:Name="ZoomThePhotoButton" Grid.Row="2" Margin="10" Content="+" FontSize="20" Click="ZoomThePhotoButton_Click"/>
+                        <Button x:Name="ZoomOutThePhotoButton" Grid.Row="2" Grid.Column="1" Margin="10" Content="-" FontSize="20" Click="ZoomOutThePhotoButton_Click"/>
                     </Grid>
                 </Grid>
 

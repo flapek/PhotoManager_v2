@@ -131,7 +131,7 @@
                                 <ImageBrush/>
                             </Button.BorderBrush>
                             <Button.Background>
-                                <ImageBrush Stretch="Uniform" ImageSource="icons-zoom-in-96.png" />
+                                <ImageBrush Stretch="Uniform" ImageSource="Icon/icons-zoom-in-96.png" />
                             </Button.Background>
                         </Button>
                         <Button x:Name="ZoomOutThePhotoButton" Grid.Row="2" Grid.Column="1" Margin="4" 
@@ -143,7 +143,7 @@
                                 <ImageBrush/>
                             </Button.BorderBrush>
                             <Button.Background>
-                                <ImageBrush Stretch="Uniform" ImageSource="icons-zoom-out-96.png" />
+                                <ImageBrush Stretch="Uniform" ImageSource="Icon/icons-zoom-out-96.png" />
                             </Button.Background>
                         </Button>
                     </Grid>

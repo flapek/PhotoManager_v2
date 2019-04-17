@@ -16,6 +16,8 @@ namespace PhotoManager_v2
         private Tree tree = new Tree();
         private UserSettings userSettings = new UserSettings();
 
+
+
         private string pathToPhoto = @"C:\Users\filap\Desktop\_DSC8277.jpg";        //do usunięcia jak już nie będzie potrzebne
         public MainWindow()
         {

@@ -1,25 +1,28 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.DirectoryTree;
 using PhotoManager_v2.Class.Open;
-using PhotoManager_v2.Class.Workers.Slider;
 
 namespace PhotoManager_v2
 {
     public partial class MainWindow : Window
     {
         private Tree tree = new Tree();
+        private UserSettings userSettings = new UserSettings();
 
         private string pathToPhoto = @"C:\Users\filap\Desktop\_DSC8277.jpg";        //do usunięcia jak już nie będzie potrzebne
         public MainWindow()
         {
             InitializeComponent();
-            tree.LoadDirectories(@"C:\Users\filap\Desktop", DirectoryTreeView);
-            //ImageHandler.Source = new BitmapImage(new Uri(pathToPhoto));
+            tree.LoadDirectories(userSettings.PathToMainFolder, DirectoryTreeView);
+
+            ImageHandler.Source = new BitmapImage(new Uri(pathToPhoto));
         }
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
@@ -43,10 +46,10 @@ namespace PhotoManager_v2
             var files = fileExplorer.Open(Environment.SpecialFolder.Desktop);
             if (fileExplorer.verificate == true)
             {
-                foreach (string filename in files.FileNames)
+                foreach (string fileName in files.FileNames)
                 {
-                    Slider slider = new Slider();
-                    var picture = slider.AddElement(filename, SliderStackPanel);
+                    Class.Workers.Slider.Slider slider = new Class.Workers.Slider.Slider();
+                    var picture = slider.AddElement(fileName, SliderStackPanel);
                     //picture.MouseLeftButtonDown += Image_MouseDown;//new MouseButtonEventHandler(Image_MouseDown);
                     //slider.grid.MouseEnter += BacklightSliderElement_MouseEnter;
                 }
@@ -63,12 +66,37 @@ namespace PhotoManager_v2
         }
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var v = e.Source;
+            var v = sender.GetType().Name;
+            FileInfo file = new FileInfo(v);
+
             //ImageHandler.Source = new BitmapImage(new Uri();
 
-            MessageBoxResult message = MessageBox.Show(v.ToString());
+            MessageBoxResult message = MessageBox.Show(file.Attributes.ToString());
 
         }       //działa, dodać obsługo pobierającą ścieżke do zdjęcia aby wyświetlało się na panelu 
+
+
+        double scale = 1;
+        double scaleStep = 0.1;
+
+        private void ZoomThePhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (scale <= 2)
+            {
+                scale += scaleStep;
+                ImageHandler.RenderTransform = new ScaleTransform(scale, scale);
+            }
+        }
+
+        private void ZoomOutThePhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (scale >= 0.2)
+            {
+                scale -= scaleStep;
+                ImageHandler.RenderTransform = new ScaleTransform(scale, scale);
+            }
+        }
+
 
     }
 }

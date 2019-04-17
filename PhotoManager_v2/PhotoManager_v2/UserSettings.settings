@@ -6,7 +6,7 @@
       <Value Profile="(Default)">mspaint.exe</Value>
     </Setting>
     <Setting Name="PathToMainFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">c:\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

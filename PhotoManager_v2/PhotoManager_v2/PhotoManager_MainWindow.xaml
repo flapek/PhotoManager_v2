@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoManager_v2"
         mc:Ignorable="d"
-        Title="PhotoManager" Height="450" Width="800" MinHeight="300" MinWidth="500" Closing="MainWindow_Closing">
+        Title="PhotoManager" Height="450" Width="800" MinHeight="300" MinWidth="500" Closing="MainWindow_Closing" 
+        ScrollViewer.VerticalScrollBarVisibility="Disabled" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.Resources>
         <Style TargetType="{x:Type TreeViewItem}">
             <Setter Property="FontSize" Value="12"/>
@@ -97,10 +98,16 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <ScrollViewer x:Name="ImageHanderScroolViewer" Grid.RowSpan="3" Grid.ColumnSpan="5" 
-                                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                                <Image x:Name="ImageHandler" Margin="5" VerticalAlignment="Center" 
-                                   HorizontalAlignment="Center"/>
+                        <ScrollViewer x:Name="ImageHandlerScroolViewer" Grid.RowSpan="3" Grid.ColumnSpan="5" 
+                                      HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+                            <Image x:Name="ImageHandler" Margin="5" VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center">
+                                <Image.LayoutTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform x:Name="ScaleTransformImage"/>
+                                    </TransformGroup>
+                                </Image.LayoutTransform>
+                            </Image>
                         </ScrollViewer>
                         <Button x:Name="PreviousPictureButton" Margin="8" Grid.Row="1" Visibility="Visible"/>
                         <Button x:Name="NextPictureButton" Margin="8" Grid.Column="4" Grid.Row="1" 
@@ -146,6 +153,10 @@
                                 <ImageBrush Stretch="Uniform" ImageSource="Icon/icons-zoom-out-96.png" />
                             </Button.Background>
                         </Button>
+
+                        <Slider Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" 
+                                Orientation="Vertical" Minimum="0.2" Maximum="2"
+                                x:Name="ScrollViewerImage" HorizontalAlignment="Center"/>
                     </Grid>
                 </Grid>
 

@@ -96,5 +96,7 @@ namespace PhotoManager_v2
                 ImageHandler.RenderTransform = new ScaleTransform(scale, scale);
             }
         }
+
+
     }
 }

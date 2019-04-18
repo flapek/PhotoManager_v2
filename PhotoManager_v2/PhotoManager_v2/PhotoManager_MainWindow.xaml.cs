@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,7 +22,10 @@ namespace PhotoManager_v2
         private Point? lastMousePositionOnTarget;
         private Point? lastDragPoint;
 
-        private string pathToPhoto = @"C:\Users\filap\Desktop\_DSC8277.jpg";        //do usunięcia jak już nie będzie potrzebne
+        double scale = 1;
+        double scaleStep = 0.2;
+
+        private string pathToPhoto { get; set; }        //do usunięcia jak już nie będzie potrzebne
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +39,8 @@ namespace PhotoManager_v2
             ImageHandlerScroolViewer.MouseMove += OnMouseMove;
             ScrollViewerImage.ValueChanged += OnSliderValueChanged;
 
+
+            pathToPhoto = @"C:\Users\filap\Desktop\_DSC8277.jpg";
             ImageHandler.Source = new BitmapImage(new Uri(pathToPhoto));
         }
         void MainWindow_Closing(object sender, CancelEventArgs e)
@@ -70,34 +76,20 @@ namespace PhotoManager_v2
         }
         private async void EditInOtherProgram_ClickAsync(object sender, RoutedEventArgs e)
         {
-            await OpenEditingProgram.Open(pathToPhoto);        //Dodać event który będzie odwoływać się do ścieżki danego zdjęcia i będzie przekazywał do programu w którym będzie edytowane zdjęcie
-        }
+            await OpenEditingProgram.Open(pathToPhoto);
+        }   
         private void OptionMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Option_Window option = new Option_Window();
             option.Show();
         }
-        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var v = sender.GetType().Name;
-            FileInfo file = new FileInfo(v);
-
-            //ImageHandler.Source = new BitmapImage(new Uri();
-
-            MessageBoxResult message = MessageBox.Show(file.Attributes.ToString());
-
-        }       //działa, dodać obsługo pobierającą ścieżke do zdjęcia aby wyświetlało się na panelu 
-
-
-        double scale = 1;
-        double scaleStep = 0.1;
-
         private void ZoomThePhotoButton_Click(object sender, RoutedEventArgs e)
         {
             if (scale <= 2)
             {
                 scale += scaleStep;
                 ImageHandler.RenderTransform = new ScaleTransform(scale, scale);
+                ScrollViewerImage.Value += scaleStep;
             }
         }
         private void ZoomOutThePhotoButton_Click(object sender, RoutedEventArgs e)
@@ -106,9 +98,9 @@ namespace PhotoManager_v2
             {
                 scale -= scaleStep;
                 ImageHandler.RenderTransform = new ScaleTransform(scale, scale);
+                ScrollViewerImage.Value -= scaleStep;
             }
         }
-
         void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (lastDragPoint.HasValue)
@@ -141,11 +133,11 @@ namespace PhotoManager_v2
 
             if (e.Delta > 0)
             {
-                ScrollViewerImage.Value += 0.2;
+                ScrollViewerImage.Value += scaleStep;
             }
             if (e.Delta < 0)
             {
-                ScrollViewerImage.Value -= 0.2;
+                ScrollViewerImage.Value -= scaleStep;
             }
 
             e.Handled = true;

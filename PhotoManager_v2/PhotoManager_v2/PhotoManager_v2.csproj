@@ -177,6 +177,8 @@
       <DependentUpon>PhotoManager.DataBase.edmx</DependentUpon>
       <LastGenOutput>PhotoManager.cs</LastGenOutput>
     </Content>
+    <Resource Include="Icon\icons-rotate-right-96.png" />
+    <Resource Include="Icon\icons-rotate-left-96.png" />
     <Resource Include="Icon\icons-zoom-out-96.png" />
     <Resource Include="Icon\icons-zoom-in-96.png" />
   </ItemGroup>

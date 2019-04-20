@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -208,6 +206,14 @@ namespace PhotoManager_v2
                 }
             }
         }
+        private void RotateRightPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            RotateTransformImage.Angle += 90;
+        }
+        private void RotateLeftPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            RotateTransformImage.Angle -= 90;
+        }           
     }
 
 }

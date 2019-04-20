@@ -103,12 +103,13 @@
                         <ScrollViewer x:Name="ImageHandlerScroolViewer" Grid.RowSpan="3" Grid.ColumnSpan="5" 
                                       HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
                             <Image x:Name="ImageHandler" Margin="5" VerticalAlignment="Center" 
-                                   HorizontalAlignment="Center">
-                                <Image.LayoutTransform>
+                                   HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform x:Name="ScaleTransformImage"/>
+                                        <RotateTransform x:Name="RotateTransformImage"/>
                                     </TransformGroup>
-                                </Image.LayoutTransform>
+                                </Image.RenderTransform>
                             </Image>
                         </ScrollViewer>
                         <Button x:Name="PreviousPictureButton" Margin="8" Grid.Row="1" Visibility="Visible"/>
@@ -129,6 +130,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
+
+                        <Slider x:Name="ScrollViewerImage" Minimum="0.2" Maximum="2" SelectionStart="0.5"
+                                HorizontalAlignment="Center" Grid.ColumnSpan="2" Orientation="Vertical"
+                                Visibility="Collapsed"/>
 
                         <Button x:Name="AddPhotoButton" Grid.Row="1" Grid.ColumnSpan="2" Content="Add photo" 
                                 Margin="10" Click="AddPhotoButton_Click"/>
@@ -156,10 +161,31 @@
                                 <ImageBrush Stretch="Uniform" ImageSource="Icon/icons-zoom-out-96.png" />
                             </Button.Background>
                         </Button>
+                        <Button x:Name="RotateRightPhotoButton" Grid.Row="3" Margin="4" 
+                                Click="RotateRightPhotoButton_Click">
+                            <Button.Foreground>
+                                <ImageBrush/>
+                            </Button.Foreground>
+                            <Button.BorderBrush>
+                                <ImageBrush/>
+                            </Button.BorderBrush>
+                            <Button.Background>
+                                <ImageBrush Stretch="Uniform" ImageSource="Icon/icons-rotate-right-96.png" />
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="RotateLeftPhotoButton" Grid.Row="3" Grid.Column="2" Margin="4" 
+                                Click="RotateLeftPhotoButton_Click">
+                            <Button.Foreground>
+                                <ImageBrush/>
+                            </Button.Foreground>
+                            <Button.BorderBrush>
+                                <ImageBrush/>
+                            </Button.BorderBrush>
+                            <Button.Background>
+                                <ImageBrush Stretch="Uniform" ImageSource="Icon/icons-rotate-left-96.png" />
+                            </Button.Background>
+                        </Button>
 
-                        <Slider Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" 
-                                Orientation="Vertical" Minimum="0.2" Maximum="2"
-                                x:Name="ScrollViewerImage" HorizontalAlignment="Center"/>
                     </Grid>
                 </Grid>
 

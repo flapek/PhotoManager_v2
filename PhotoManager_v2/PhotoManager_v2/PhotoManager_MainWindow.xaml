@@ -85,7 +85,7 @@
                         <ColumnDefinition Width="100"/>
                     </Grid.ColumnDefinitions>
 
-                    <Grid>
+                    <Grid Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition/>
@@ -100,18 +100,27 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <ScrollViewer x:Name="ImageHandlerScroolViewer" Grid.RowSpan="3" Grid.ColumnSpan="5" 
-                                      HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
-                            <Image x:Name="ImageHandler" Margin="5" VerticalAlignment="Center" 
-                                   HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                                <Image.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform x:Name="ScaleTransformImage"/>
-                                        <RotateTransform x:Name="RotateTransformImage"/>
-                                    </TransformGroup>
-                                </Image.RenderTransform>
-                            </Image>
-                        </ScrollViewer>
+                        <Border BorderBrush="LightGray" BorderThickness="3" Grid.RowSpan="3" 
+                                Grid.ColumnSpan="5">
+                            <ScrollViewer x:Name="ImageHandlerScroolViewer" 
+                                        HorizontalScrollBarVisibility="Hidden" Margin="5"
+                                        VerticalScrollBarVisibility="Hidden" Grid.IsSharedSizeScope="True" 
+                                          UseLayoutRounding="True">
+                                <Image x:Name="ImageHandler" RenderTransformOrigin="0.5,0.5" 
+                                       PreviewMouseWheel="OnPreviewMouseWheel"
+                                       MouseLeftButtonUp="OnMouseLeftButtonUp"
+                                       PreviewMouseLeftButtonUp="OnMouseLeftButtonUp"
+                                       PreviewMouseLeftButtonDown="OnMouseLeftButtonDown"
+                                       MouseMove="OnMouseMove">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform x:Name="ScaleTransformImage"/>
+                                            <RotateTransform x:Name="RotateTransformImage"/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </ScrollViewer>
+                        </Border>
                         <Button x:Name="PreviousPictureButton" Margin="8" Grid.Row="1" Visibility="Visible"/>
                         <Button x:Name="NextPictureButton" Margin="8" Grid.Column="4" Grid.Row="1" 
                                 Visibility="Visible"/>

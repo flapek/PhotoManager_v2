@@ -21,7 +21,7 @@ namespace PhotoManager_v2
         private Point? lastDragPoint;
 
         double scale = 1;
-        double scaleStep = 0.2;
+        double scaleStep = 0.1;
 
         private string pathToPhoto { get; set; }        //do usunięcia jak już nie będzie potrzebne
         public MainWindow()
@@ -29,12 +29,12 @@ namespace PhotoManager_v2
             InitializeComponent();
             tree.LoadDirectories(userSettings.PathToMainFolder, DirectoryTreeView);
 
-            ImageHandlerScroolViewer.ScrollChanged += OnImageHandlerScroolViewerScrollChanged;
-            ImageHandlerScroolViewer.MouseLeftButtonUp += OnMouseLeftButtonUp;
-            ImageHandlerScroolViewer.PreviewMouseLeftButtonUp += OnMouseLeftButtonUp;
-            ImageHandlerScroolViewer.PreviewMouseWheel += OnPreviewMouseWheel;
-            ImageHandlerScroolViewer.PreviewMouseLeftButtonDown += OnMouseLeftButtonDown;
-            ImageHandlerScroolViewer.MouseMove += OnMouseMove;
+            //ImageHandlerScroolViewer.ScrollChanged += OnImageHandlerScroolViewerScrollChanged;
+            //ImageHandlerScroolViewer.MouseLeftButtonUp += OnMouseLeftButtonUp;
+            //ImageHandlerScroolViewer.PreviewMouseLeftButtonUp += OnMouseLeftButtonUp;
+            //ImageHandlerScroolViewer.PreviewMouseWheel += OnPreviewMouseWheel;
+            //ImageHandlerScroolViewer.PreviewMouseLeftButtonDown += OnMouseLeftButtonDown;
+            //ImageHandlerScroolViewer.MouseMove += OnMouseMove;
             ScrollViewerImage.ValueChanged += OnSliderValueChanged;
 
 

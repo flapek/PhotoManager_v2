@@ -12,5 +12,8 @@ namespace PhotoManager_v2
         public const string CaptionNameOption = "Option";
         public const string OptionHintForOpenEditingProgram = "Here you can choose path to program where you can edit photos.";
         public const string OptionHintForChoosePathToDirectory = "Here you can choose path to main directory where they will by stored photo.";
+        public const string CaptionNameClose = "Close";
+        public const string MessageBoxStringDefaultOption = "Do you want set default option?";
+        public const string MessageBoxStringClose = "Data is dirty. Close without saving?";
     }
 }

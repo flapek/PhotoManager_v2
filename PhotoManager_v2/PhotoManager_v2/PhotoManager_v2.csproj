@@ -71,8 +71,8 @@
     </ApplicationDefinition>
     <Compile Include="Class\DirectoryTree\Dictionary.cs" />
     <Compile Include="Class\DirectoryTree\Tree.cs" />
-    <Compile Include="Class\Open\FileExplorer.cs" />
-    <Compile Include="Class\Open\FolderExplorer.cs" />
+    <Compile Include="Class\Workers\Open\FileExplorer.cs" />
+    <Compile Include="Class\Workers\Open\FolderExplorer.cs" />
     <Compile Include="Class\Workers\Slider\Slider.cs" />
     <Compile Include="DataBase\Data\Authors.cs">
       <DependentUpon>PhotoManager.tt</DependentUpon>
@@ -116,7 +116,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Class\Constants\Constants.cs" />
-    <Compile Include="Class\Open\OpenEditingProgram.cs" />
+    <Compile Include="Class\Workers\Open\OpenEditingProgram.cs" />
     <Compile Include="Class\Photo\Author.cs" />
     <Compile Include="Class\Photo\Picture.cs" />
     <Compile Include="Class\Photo\PhotoDimensions.cs" />

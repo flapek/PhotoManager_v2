@@ -29,12 +29,12 @@ namespace PhotoManager_v2
                 userSettings.PathToMainFolder = SourceToMainFolderTextBox.Text;
                 userSettings.Save();
                 SaveOptionButton.IsEnabled = false;
+                isDataDirty = false;
             }
-        }
-
+        }          //skończone
         private void DefaultOptionButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = MessageBox.Show("Do you want set default option?", Constants.CaptionNameOption, MessageBoxButton.YesNo);
+            MessageBoxResult messageBoxResult = MessageBox.Show(Constants.MessageBoxStringDefaultOption, Constants.CaptionNameOption, MessageBoxButton.YesNo);
 
             if (MessageBoxResult.Yes == messageBoxResult)
             {
@@ -43,31 +43,42 @@ namespace PhotoManager_v2
                 SourceToMainFolderTextBox.Text = userSettings.PathToMainFolder;
             }
         }       //skończone
-
         private void SearchProgramPathButton_Click(object sender, RoutedEventArgs e)
         {
             FileExplorer file = new FileExplorer("EXE (*.exe)|*.exe", false);
-            file.Open(SourceEditingProgramTextBox, Environment.SpecialFolder.MyComputer);
+            var filename = file.Open(Environment.SpecialFolder.MyComputer);
             if (file.verificate)
             {
                 isDataDirty = true;
                 SaveOptionButton.IsEnabled = true;
+                SourceEditingProgramTextBox.Text = filename.FileName;
             }
-
         }
         private void SearchMainFolderPathButton_Click(object sender, RoutedEventArgs e)
         {
-            //FileExplorer file = new FileExplorer("", false); 
-            //file.Open(SourceToMainFolderTextBox, Environment.SpecialFolder.UserProfile);
-
             FolderExplorer folder = new FolderExplorer();
-            folder.Open(SourceToMainFolderTextBox);
+            string path = folder.Open();
+
+            if (!path.Equals(string.Empty))
+            {
+                SourceToMainFolderTextBox.Text = path;
+                isDataDirty = true;
+            }
+
         }
         private void OkOptionButton_Click(object sender, RoutedEventArgs e)
         {
-
-            Close();
-        }    /* Zrobić obsługę sprawdzającą czy jakieś zmiany nie zostały wprowadzone w opcjach. Jeżeli tak to powinno wyskakiwać okno dialogowe czy na pewno zapisać zmiany.*/
+            if (isDataDirty)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show(Constants.MessageBoxStringClose, Constants.CaptionNameClose, MessageBoxButton.YesNo);
+                if (MessageBoxResult.Yes == messageBoxResult)
+                {
+                    Close();
+                }
+            }
+            else
+                Close();
+        }
         private void GeneralSettingsMenuItem_Click(object sender, RoutedEventArgs e)
         {
             GeneralOptionGrid.Visibility = Visibility.Visible;
@@ -78,11 +89,13 @@ namespace PhotoManager_v2
             SourceOptionGrid.Visibility = Visibility.Visible;
             GeneralOptionGrid.Visibility = Visibility.Hidden;
         }
-
         private void SourceEditingProgramTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             if (!(userSettings.PathToEditingProgram == SourceEditingProgramTextBox.Text))
+            {
                 SaveOptionButton.IsEnabled = true;
+                isDataDirty = true;
+            }
             else
                 SaveOptionButton.IsEnabled = false;
         }       //poprawić funkcjonalność 
@@ -90,9 +103,25 @@ namespace PhotoManager_v2
         private void SourceToMainFolderTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             if (!(userSettings.PathToMainFolder == SourceToMainFolderTextBox.Text))
+            {
                 SaveOptionButton.IsEnabled = true;
+                isDataDirty = true;
+            }
             else
                 SaveOptionButton.IsEnabled = false;
         }       //poprawić funkcjonalność
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (isDataDirty)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show(Constants.MessageBoxStringClose, Constants.CaptionNameClose, MessageBoxButton.YesNo);
+                if (MessageBoxResult.No == messageBoxResult)
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+                Close();
+        }   //skończone
     }
 }

@@ -106,12 +106,7 @@
                                         HorizontalScrollBarVisibility="Hidden" Margin="5"
                                         VerticalScrollBarVisibility="Hidden" Grid.IsSharedSizeScope="True" 
                                           UseLayoutRounding="True">
-                                <Image x:Name="ImageHandler" RenderTransformOrigin="0.5,0.5" 
-                                       PreviewMouseWheel="OnPreviewMouseWheel"
-                                       MouseLeftButtonUp="OnMouseLeftButtonUp"
-                                       PreviewMouseLeftButtonUp="OnMouseLeftButtonUp"
-                                       PreviewMouseLeftButtonDown="OnMouseLeftButtonDown"
-                                       MouseMove="OnMouseMove">
+                                <Image x:Name="ImageHandler">
                                     <Image.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform x:Name="ScaleTransformImage"/>
@@ -146,8 +141,7 @@
 
                         <Button x:Name="AddPhotoButton" Grid.Row="1" Grid.ColumnSpan="2" Content="Add photo" 
                                 Margin="10" Click="AddPhotoButton_Click"/>
-                        <Button x:Name="ZoomThePhotoButton" Grid.Row="2" Margin="4" 
-                                Click="ZoomThePhotoButton_Click">
+                        <Button x:Name="ZoomThePhotoButton" Grid.Row="2" Margin="4">
                             <Button.Foreground>
                                 <ImageBrush/>
                             </Button.Foreground>

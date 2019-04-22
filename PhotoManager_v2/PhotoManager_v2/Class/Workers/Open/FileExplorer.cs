@@ -10,25 +10,10 @@ namespace PhotoManager_v2.Class.Open
         private OpenFileDialog openFileDialog = new OpenFileDialog();
         internal bool verificate = false;
 
-
         public FileExplorer(string openFileDialogFilter, bool openFileDialogMultiselect)
         {
             openFileDialog.Filter = openFileDialogFilter;
             openFileDialog.Multiselect = openFileDialogMultiselect;
-        }
-        public void Open(TextBox textBox, Environment.SpecialFolder specialFolder)
-        {
-            openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(specialFolder);
-            openFileDialog.CheckFileExists = true;
-            openFileDialog.CheckPathExists = true;
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                verificate = true;
-                textBox.Text = openFileDialog.FileName;
-            }
-
         }
         public OpenFileDialog Open(Environment.SpecialFolder specialFolder)
         {

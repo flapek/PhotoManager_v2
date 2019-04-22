@@ -29,14 +29,16 @@ namespace PhotoManager_v2
             InitializeComponent();
             tree.LoadDirectories(userSettings.PathToMainFolder, DirectoryTreeView);
 
-            //ImageHandlerScroolViewer.ScrollChanged += OnImageHandlerScroolViewerScrollChanged;
-            //ImageHandlerScroolViewer.MouseLeftButtonUp += OnMouseLeftButtonUp;
-            //ImageHandlerScroolViewer.PreviewMouseLeftButtonUp += OnMouseLeftButtonUp;
-            //ImageHandlerScroolViewer.PreviewMouseWheel += OnPreviewMouseWheel;
-            //ImageHandlerScroolViewer.PreviewMouseLeftButtonDown += OnMouseLeftButtonDown;
-            //ImageHandlerScroolViewer.MouseMove += OnMouseMove;
+            ImageHandlerScroolViewer.ScrollChanged += OnImageHandlerScroolViewerScrollChanged;
+            ImageHandlerScroolViewer.MouseLeftButtonUp += OnMouseLeftButtonUp;
+            ImageHandlerScroolViewer.PreviewMouseLeftButtonUp += OnMouseLeftButtonUp;
+            ImageHandlerScroolViewer.PreviewMouseWheel += OnPreviewMouseWheel;
+            ImageHandlerScroolViewer.PreviewMouseLeftButtonDown += OnMouseLeftButtonDown;
+            ImageHandlerScroolViewer.MouseMove += OnMouseMove;
             ScrollViewerImage.ValueChanged += OnSliderValueChanged;
 
+            ZoomThePhotoButton.MouseLeftButtonDown += ZoomThePhotoButton_Click;
+            ZoomThePhotoButton.PreviewMouseLeftButtonDown += ZoomThePhotoButton_Click;
 
             pathToPhoto = @"C:\Users\filap\Desktop\_DSC8277.jpg";
             ImageHandler.Source = new BitmapImage(new Uri(pathToPhoto));
@@ -55,8 +57,8 @@ namespace PhotoManager_v2
                 {
                     win.Close();
                 }
-            }           //jak zamykać wszystkie otwarte okna na raz
-        }
+            }
+        }                    //jak zamykać wszystkie otwarte okna na raz
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
             FileExplorer fileExplorer = new FileExplorer("JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tiff)|*.tiff|All Files (*.*)|*.*", true);

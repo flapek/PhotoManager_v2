@@ -44,5 +44,10 @@ namespace PhotoManager_v2.Class.Workers.Slider
 
             return image;
         }
+
+        public static implicit operator System.Windows.Controls.Slider(Slider v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -8,6 +9,7 @@ using System.Windows.Media.Imaging;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.DirectoryTree;
 using PhotoManager_v2.Class.Open;
+using PhotoManager_v2.Class.Photo;
 
 namespace PhotoManager_v2
 {
@@ -27,7 +29,7 @@ namespace PhotoManager_v2
         public MainWindow()
         {
             InitializeComponent();
-            tree.LoadDirectories(userSettings.PathToMainFolder, DirectoryTreeView);
+            LoadDirectoriesTree();
 
             ImageHandlerScroolViewer.ScrollChanged += OnImageHandlerScroolViewerScrollChanged;
             ImageHandlerScroolViewer.MouseLeftButtonUp += OnMouseLeftButtonUp;
@@ -42,6 +44,29 @@ namespace PhotoManager_v2
 
             pathToPhoto = @"C:\Users\filap\Desktop\_DSC8277.jpg";
             ImageHandler.Source = new BitmapImage(new Uri(pathToPhoto));
+        }
+
+        private void LoadDirectoriesTree()
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(userSettings.PathToMainFolder);
+            DirectoryInfo[] subDirs = directoryInfo.GetDirectories();
+           // DirectoryTreeView.Items.Add(userSettings.PathToMainFolder);
+            foreach (Folder folder in tree.LoadDirectories(directoryInfo))
+            {
+                DirectoryTreeView.Items.Add(folder.Name);
+                foreach (Picture picture in tree.LoadFile(directoryInfo))
+                {
+                    DirectoryTreeView.Items.Add(picture.Name);
+                    foreach (var item in subDirs)
+                    {
+                        foreach (var file in tree.LoadFile(item))
+                        {
+                            DirectoryTreeView.Items.Add(picture.Name);
+                        }
+                    }
+                }
+            }
+
         }
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
@@ -61,7 +86,7 @@ namespace PhotoManager_v2
         }                    //jak zamykać wszystkie otwarte okna na raz
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
-            FileExplorer fileExplorer = new FileExplorer("JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tiff)|*.tiff|All Files (*.*)|*.*", true);
+            FileExplorer fileExplorer = new FileExplorer("JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tiff)|*.tiff", true);
             var files = fileExplorer.Open(Environment.SpecialFolder.Desktop);
             if (fileExplorer.verificate == true)
             {
@@ -73,16 +98,16 @@ namespace PhotoManager_v2
                     //slider.ImageHandler.MouseEnter += BacklightSliderElement_MouseEnter;
                 }
             }
-        }
+        }       //dokończyć
         private async void EditInOtherProgram_ClickAsync(object sender, RoutedEventArgs e)
         {
             await OpenEditingProgram.Open(pathToPhoto);
-        }   
+        }       //dokończyć, brakuje przekazywania ścieżki do pliku 
         private void OptionMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Option_Window option = new Option_Window();
             option.Show();
-        }
+        }   //skończone
         private void ZoomThePhotoButton_Click(object sender, RoutedEventArgs e)
         {
             if (scale <= 2)
@@ -215,7 +240,7 @@ namespace PhotoManager_v2
         private void RotateLeftPhotoButton_Click(object sender, RoutedEventArgs e)
         {
             RotateTransformImage.Angle -= 90;
-        }           
+        }
     }
 
 }

@@ -1,26 +1,23 @@
 ﻿using PhotoManager_v2.Class.Open;
 using System;
 using System.Windows;
-
+using System.Windows.Controls;
+using System.ComponentModel;
 
 namespace PhotoManager_v2
 {
-    /// <summary>
-    /// Logika interakcji dla klasy Option_Window.xaml
-    /// </summary>
     public partial class Option_Window : Window
     {
-        UserSettings userSettings = new UserSettings();
-
-        bool isDataDirty = false;
+        private UserSettings userSettings = new UserSettings();
+        private bool isDataDirty = false;
 
         public Option_Window()
         {
             InitializeComponent();
             SourceEditingProgramTextBox.Text = userSettings.PathToEditingProgram;
+            SourceToMainFolderTextBox.Text = userSettings.PathToMainFolder;
             HintOpenProgramTextBlock.Text = Constants.OptionHintForOpenEditingProgram + "\n" + Constants.OptionHintForChoosePathToDirectory;
         }
-
         private void SaveOptionButton_Click(object sender, RoutedEventArgs e)
         {
             if (isDataDirty)
@@ -78,7 +75,7 @@ namespace PhotoManager_v2
             }
             else
                 Close();
-        }
+        }       //poprawić
         private void GeneralSettingsMenuItem_Click(object sender, RoutedEventArgs e)
         {
             GeneralOptionGrid.Visibility = Visibility.Visible;
@@ -89,28 +86,35 @@ namespace PhotoManager_v2
             SourceOptionGrid.Visibility = Visibility.Visible;
             GeneralOptionGrid.Visibility = Visibility.Hidden;
         }
-        private void SourceEditingProgramTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void SourceEditingProgramTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!(userSettings.PathToEditingProgram == SourceEditingProgramTextBox.Text))
+            if (!(userSettings.PathToEditingProgram == SourceEditingProgramTextBox.Text &&
+                userSettings.PathToMainFolder == SourceToMainFolderTextBox.Text))
             {
                 SaveOptionButton.IsEnabled = true;
                 isDataDirty = true;
             }
             else
+            {
                 SaveOptionButton.IsEnabled = false;
-        }       //poprawić funkcjonalność 
-
-        private void SourceToMainFolderTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+                isDataDirty = false;
+            }
+        }//poprawić funkcjonalność 
+        private void SourceToMainFolderTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!(userSettings.PathToMainFolder == SourceToMainFolderTextBox.Text))
+            if (!(userSettings.PathToMainFolder == SourceToMainFolderTextBox.Text &&
+                userSettings.PathToEditingProgram == SourceEditingProgramTextBox.Text))
             {
                 SaveOptionButton.IsEnabled = true;
                 isDataDirty = true;
             }
             else
+            {
                 SaveOptionButton.IsEnabled = false;
-        }       //poprawić funkcjonalność
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+                isDataDirty = false;
+            }
+        }//poprawić funkcjonalność
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             if (isDataDirty)
             {
@@ -122,6 +126,6 @@ namespace PhotoManager_v2
             }
             else
                 Close();
-        }   //skończone
+        }    //poprawić
     }
 }

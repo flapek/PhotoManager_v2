@@ -11,7 +11,7 @@ namespace PhotoManager_v2.Class.Photo
         public double Size { get; set; }
         public List<Author> Author { get; set; }
         public List<string> Tags { get; set; }
-        public string PathFolder { get; set; }
+        public string FullName { get; set; }
         public string Comment { get; set; }
         public double ApertureUnit { get; set; }
         public double ExposureTime { get; set; }

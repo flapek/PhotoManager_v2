@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using PhotoManager_v2.Class.Photo;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,14 +31,13 @@ namespace PhotoManager_v2.Class.DirectoryTree
                 }
             });
         }
-        public void LoadDirectories(string source, TreeView treeView)
+        public List<Folder> LoadDirectories(DirectoryInfo root)
         {
+            DirectoryInfo[] directoryInfos = root.GetDirectories();
+            List<Folder> folders = new List<Folder>();
+
             try
             {
-                DirectoryInfo directoryInfo = new DirectoryInfo(source);
-                DirectoryInfo[] directoryInfos = directoryInfo.GetDirectories();
-                List<Folder> folders = new List<Folder>();
-
                 foreach (var directory in directoryInfos.OrderBy(x => x.Name))
                 {
                     folders.Add(new Folder
@@ -45,134 +46,45 @@ namespace PhotoManager_v2.Class.DirectoryTree
                         Name = directory.Name
                     });
                 }
-
-                foreach (Folder folder in folders)
-                {
-                    //treeView.Items.Add(folder.Name);
-                    treeView.Items.Add(GetItem(folder));
-                }
             }
             catch (DirectoryNotFoundException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            return folders;
         }
-        private TreeViewItem GetItem(Folder folder)
+        public List<Picture> LoadFile(DirectoryInfo root)
         {
-            var item = new TreeViewItem
+            FileInfo[] files = null;
+            List<Picture> pictures = new List<Picture>();
+
+            try
             {
-                Header = folder.Name,
-                DataContext = folder,
-                Tag = folder,
-            };
-            //this.AddDummy(folder);
-            //item.Expanded += new RoutedEventHandler(item_Expanded);
-            return item;
+                //files = root.GetFiles("*.*");
+                files = root.GetFiles("*.jpg");
+                //files = root.GetFiles("*.png");
+                //files = root.GetFiles("*.tiff");
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            if (files != null)
+            {
+                foreach (FileInfo file in files)
+                {
+                    pictures.Add(new Picture
+                    {
+                        FullName = file.FullName,
+                        Name = file.Name
+                    });
+                }
+
+                return pictures;
+            }
+            else return null;
         }
-
-
-        //private TreeViewItem GetItem(DirectoryInfo info)
-        //{
-        //    var item = new TreeViewItem
-        //    {
-        //        Header = info.Name,
-        //        DataContext = info,
-        //        Tag = info,
-        //    };
-        //    this.AddDummy(item);
-        //    item.Expanded += new RoutedEventHandler(item_Expanded);
-        //    return item;
-        //}
-        //private TreeViewItem GetItem(FileInfo file)
-        //{
-        //    var item = new TreeViewItem
-        //    {
-        //        Header = file.Name,
-        //        DataContext = file,
-        //        Tag = file
-        //    };
-        //    return item;
-        //}
-        //private void AddDummy(TreeViewItem item)
-        //{
-        //    item.Items.Add(new DummyTreeViewItem());
-        //}
-        //private bool HasDummy(TreeViewItem item)
-        //{
-        //    return item.HasItems && (item.Items.OfType<TreeViewItem>().ToList().FindAll(tvi => tvi is DummyTreeViewItem).Count > 0);
-        //}
-        //private void RemoveDummy(TreeViewItem item)
-        //{
-        //    var dummies = item.Items.OfType<TreeViewItem>().ToList().FindAll(tvi => tvi is DummyTreeViewItem);
-        //    foreach (var dummy in dummies)
-        //    {
-        //        item.Items.Remove(dummy);
-        //    }
-        //}
-        //private void ExploreDirectories(TreeViewItem item)
-        //{
-        //    var directoryInfo = (DirectoryInfo)null;
-        //    if (item.Tag is DriveInfo)
-        //    {
-        //        directoryInfo = ((DriveInfo)item.Tag).RootDirectory;
-        //    }
-        //    else if (item.Tag is DirectoryInfo)
-        //    {
-        //        directoryInfo = (DirectoryInfo)item.Tag;
-        //    }
-        //    else if (item.Tag is FileInfo)
-        //    {
-        //        directoryInfo = ((FileInfo)item.Tag).Directory;
-        //    }
-        //    if (ReferenceEquals(directoryInfo, null)) return;
-        //    foreach (var directory in directoryInfo.GetDirectories())
-        //    {
-        //        var isHidden = (directory.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
-        //        var isSystem = (directory.Attributes & FileAttributes.System) == FileAttributes.System;
-        //        if (!isHidden && !isSystem)
-        //        {
-        //            item.Items.Add(GetItem(directory));
-        //        }
-        //    }
-        //}
-        //private void ExploreFiles(TreeViewItem item)
-        //{
-        //    var directoryInfo = (DirectoryInfo)null;
-        //    if (item.Tag is DriveInfo)
-        //    {
-        //        directoryInfo = ((DriveInfo)item.Tag).RootDirectory;
-        //    }
-        //    else if (item.Tag is DirectoryInfo)
-        //    {
-        //        directoryInfo = (DirectoryInfo)item.Tag;
-        //    }
-        //    else if (item.Tag is FileInfo)
-        //    {
-        //        directoryInfo = ((FileInfo)item.Tag).Directory;
-        //    }
-        //    if (ReferenceEquals(directoryInfo, null)) return;
-        //    foreach (var file in directoryInfo.GetFiles())
-        //    {
-        //        var isHidden = (file.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
-        //        var isSystem = (file.Attributes & FileAttributes.System) == FileAttributes.System;
-        //        if (!isHidden && !isSystem)
-        //        {
-        //            item.Items.Add(this.GetItem(file));
-        //        }
-        //    }
-        //}
-        //void item_Expanded(object sender, RoutedEventArgs e)
-        //{
-        //    var item = (TreeViewItem)sender;
-        //    if (HasDummy(item))
-        //    {
-        //        Cursor = Cursors.Wait;
-        //        RemoveDummy(item);
-        //        ExploreDirectories(item);
-        //        ExploreFiles(item);
-        //        Cursor = Cursors.Arrow;
-        //    }
-        //}
 
     }
 }

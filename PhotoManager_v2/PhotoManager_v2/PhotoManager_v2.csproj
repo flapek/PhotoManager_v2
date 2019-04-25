@@ -71,6 +71,7 @@
     </ApplicationDefinition>
     <Compile Include="Class\DirectoryTree\Dictionary.cs" />
     <Compile Include="Class\DirectoryTree\Tree.cs" />
+    <Compile Include="HeaderToImageConverter.cs" />
     <Compile Include="Class\Workers\Open\FileExplorer.cs" />
     <Compile Include="Class\Workers\Open\FolderExplorer.cs" />
     <Compile Include="Class\Workers\Slider\Slider.cs" />
@@ -177,6 +178,9 @@
       <DependentUpon>PhotoManager.DataBase.edmx</DependentUpon>
       <LastGenOutput>PhotoManager.cs</LastGenOutput>
     </Content>
+    <Resource Include="Icon\drive.png" />
+    <Resource Include="Icon\file.png" />
+    <Resource Include="Icon\folder-open.png" />
     <Resource Include="Icon\icons-rotate-right-96.png" />
     <Resource Include="Icon\icons-rotate-left-96.png" />
     <Resource Include="Icon\icons-zoom-out-96.png" />

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoManager_v2", "PhotoMan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{FF07E18E-9EB0-4CEB-A142-1575B6C42260}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTreeView", "WpfTreeView\WpfTreeView.csproj", "{CAFD5471-EAEB-4138-A5E2-CF1120642732}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FF07E18E-9EB0-4CEB-A142-1575B6C42260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF07E18E-9EB0-4CEB-A142-1575B6C42260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF07E18E-9EB0-4CEB-A142-1575B6C42260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAFD5471-EAEB-4138-A5E2-CF1120642732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAFD5471-EAEB-4138-A5E2-CF1120642732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAFD5471-EAEB-4138-A5E2-CF1120642732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAFD5471-EAEB-4138-A5E2-CF1120642732}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

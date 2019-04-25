@@ -69,9 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Class\DirectoryTree\Dictionary.cs" />
-    <Compile Include="Class\DirectoryTree\Tree.cs" />
-    <Compile Include="HeaderToImageConverter.cs" />
+    <Compile Include="Class\Workers\HeaderToImageConverter.cs" />
     <Compile Include="Class\Workers\Open\FileExplorer.cs" />
     <Compile Include="Class\Workers\Open\FolderExplorer.cs" />
     <Compile Include="Class\Workers\Slider\Slider.cs" />

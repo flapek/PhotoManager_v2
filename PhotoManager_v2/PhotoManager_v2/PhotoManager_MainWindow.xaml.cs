@@ -8,9 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using PhotoManager_v2.Class;
-using PhotoManager_v2.Class.DirectoryTree;
 using PhotoManager_v2.Class.Open;
-using PhotoManager_v2.Class.Photo;
 
 namespace PhotoManager_v2
 {
@@ -18,7 +16,10 @@ namespace PhotoManager_v2
     {
         #region Variables
 
-        private Tree tree = new Tree();
+        /// <summary>
+        /// All local variables
+        /// </summary>
+
         private UserSettings userSettings = new UserSettings();
 
         private Point? lastCenterPositionOnTarget;
@@ -28,16 +29,15 @@ namespace PhotoManager_v2
         double scale = 1;
         double scaleStep = 0.1;
 
-        private string pathToPhoto { get; set; }        //do usunięcia jak już nie będzie potrzebne
+        private string pathToImage { get; set; }
 
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// Default constructor
+        /// Constructor
         /// </summary>
-
         public MainWindow()
         {
             InitializeComponent();
@@ -54,8 +54,8 @@ namespace PhotoManager_v2
             ZoomThePhotoButton.MouseLeftButtonDown += ZoomThePhotoButton_Click;
             ZoomThePhotoButton.PreviewMouseLeftButtonDown += ZoomThePhotoButton_Click;
 
-            pathToPhoto = @"C:\Users\filap\Desktop\_DSC8277.jpg";
-            ImageHandler.Source = new BitmapImage(new Uri(pathToPhoto));
+            pathToImage = @"C:\Users\filap\Desktop\_DSC8277.jpg";
+            ImageHandler.Source = new BitmapImage(new Uri(pathToImage));
         }
         #endregion
 
@@ -66,8 +66,6 @@ namespace PhotoManager_v2
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Get every logical drive on the machine
@@ -226,28 +224,11 @@ namespace PhotoManager_v2
 
         #endregion
 
-        //private void LoadDirectoriesTree()
-        //{
-        //    DirectoryInfo directoryInfo = new DirectoryInfo(userSettings.PathToMainFolder);
-        //    DirectoryInfo[] subDirs = directoryInfo.GetDirectories();
-        //    //DirectoryTreeView.Items.Add(userSettings.PathToMainFolder);
-        //    foreach (Folder folder in tree.LoadDirectories(directoryInfo))
-        //    {
-        //        DirectoryTreeView.Items.Add(folder.Name);
-        //        foreach (Picture picture in tree.LoadFile(directoryInfo))
-        //        {
-        //            DirectoryTreeView.Items.Add(picture.Name);
-        //            foreach (var item in subDirs)
-        //            {
-        //                foreach (var file in tree.LoadFile(item))
-        //                {
-        //                    DirectoryTreeView.Items.Add(picture.Name);
-        //                }
-        //            }
-        //        }
-        //    }
+        #region On Close
 
-        //}
+        /// <summary>
+        /// When the application is closing
+        /// </summary>
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Do you want close app?", "Close", MessageBoxButton.YesNo);
@@ -264,30 +245,33 @@ namespace PhotoManager_v2
                 }
             }
         }                    //jak zamykać wszystkie otwarte okna na raz
-        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
-        {
-            FileExplorer fileExplorer = new FileExplorer("JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tiff)|*.tiff", true);
-            var files = fileExplorer.Open(Environment.SpecialFolder.Desktop);
-            if (fileExplorer.verificate == true)
-            {
-                foreach (string fileName in files.FileNames)
-                {
-                    Class.Workers.Slider.Slider slider = new Class.Workers.Slider.Slider();
-                    var picture = slider.AddElement(fileName, SliderStackPanel);
-                    //picture.MouseLeftButtonDown += Image_MouseDown;//new MouseButtonEventHandler(Image_MouseDown);
-                    //slider.ImageHandler.MouseEnter += BacklightSliderElement_MouseEnter;
-                }
-            }
-        }       //dokończyć
-        private async void EditInOtherProgram_ClickAsync(object sender, RoutedEventArgs e)
-        {
-            await OpenEditingProgram.Open(pathToPhoto);
-        }       //dokończyć, brakuje przekazywania ścieżki do pliku 
+
+        #endregion
+
+        #region Option
+
+        /// <summary>
+        /// When user want change option
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private void OptionMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Option_Window option = new Option_Window();
             option.Show();
         }   //skończone
+
+        #endregion
+
+        #region Image Handler Events
+
+        /// <summary>
+        /// When user interact with image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private void ZoomThePhotoButton_Click(object sender, RoutedEventArgs e)
         {
             if (scale <= 2)
@@ -421,7 +405,40 @@ namespace PhotoManager_v2
         {
             RotateTransformImage.Angle -= 90;
         }
-    }
 
+        #endregion
+
+        #region Open Editing Program
+
+        /// <summary>
+        /// When user want edit photo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private async void EditInOtherProgram_ClickAsync(object sender, RoutedEventArgs e)
+        {
+            await OpenEditingProgram.Open(pathToImage);
+        }
+
+        #endregion
+
+
+        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            FileExplorer fileExplorer = new FileExplorer("JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tiff)|*.tiff", true);
+            var files = fileExplorer.Open(Environment.SpecialFolder.Desktop);
+            if (fileExplorer.verificate == true)
+            {
+                foreach (string fileName in files.FileNames)
+                {
+                    Class.Workers.Slider.Slider slider = new Class.Workers.Slider.Slider();
+                    var picture = slider.AddElement(fileName, SliderStackPanel);
+                    //picture.MouseLeftButtonDown += Image_MouseDown;//new MouseButtonEventHandler(Image_MouseDown);
+                    //slider.ImageHandler.MouseEnter += BacklightSliderElement_MouseEnter;
+                }
+            }
+        }       //dokończyć
+    }
 }
 

@@ -104,5 +104,11 @@
   <ItemGroup>
     <Resource Include="Images\folder-open.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoManager_v2\PhotoManager_v2.csproj">
+      <Project>{710039ea-431a-4183-ac58-e4d0b6c8617b}</Project>
+      <Name>PhotoManager_v2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

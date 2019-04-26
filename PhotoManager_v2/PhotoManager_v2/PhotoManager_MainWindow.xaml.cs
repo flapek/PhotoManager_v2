@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.Open;
+using PhotoManager_v2.Class.Workers;
 
 namespace PhotoManager_v2
 {
@@ -70,15 +72,15 @@ namespace PhotoManager_v2
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Get every logical drive on the machine
-            foreach (string drive in Directory.GetLogicalDrives())
+            foreach (string folderName in Directory.GetDirectories(userSettings.PathToMainFolder))
             {
                 // Create a new item for it
                 TreeViewItem item = new TreeViewItem()
                 {
                     // Set the header
-                    Header = drive,
+                    Header = GetName.GetFileFolderName(folderName),
                     // And the full path
-                    Tag = drive
+                    Tag = folderName
                 };
 
                 // Add a dummy item
@@ -143,7 +145,7 @@ namespace PhotoManager_v2
                 var subItem = new TreeViewItem()
                 {
                     // Set header as folder name
-                    Header = GetFileFolderName(directoryPath),
+                    Header = GetName.GetFileFolderName(directoryPath),
                     // And tag as full path
                     Tag = directoryPath
                 };
@@ -183,7 +185,7 @@ namespace PhotoManager_v2
                 var subItem = new TreeViewItem()
                 {
                     // Set header as file name
-                    Header = GetFileFolderName(filePath),
+                    Header = GetName.GetFileFolderName(filePath),
                     // And tag as full path
                     Tag = filePath
                 };
@@ -199,30 +201,7 @@ namespace PhotoManager_v2
 
         #region Helpers
 
-        /// <summary>
-        /// Find the file or folder name from a full path
-        /// </summary>
-        /// <param name="path">The full path</param>
-        /// <returns></returns>
-        public static string GetFileFolderName(string path)
-        {
-            // If we have no path, return empty
-            if (string.IsNullOrEmpty(path))
-                return string.Empty;
-
-            // Make all slashes back slashes
-            var normalizedPath = path.Replace('/', '\\');
-
-            // Find the last backslash in the path
-            var lastIndex = normalizedPath.LastIndexOf('\\');
-
-            // If we don't find a backslash, return the path itself
-            if (lastIndex <= 0)
-                return path;
-
-            // Return the name after the last back slash
-            return path.Substring(lastIndex + 1);
-        }
+        
 
         #endregion
 

@@ -32,7 +32,7 @@ namespace WpfTreeView
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Get every logical drive on the machine
-            foreach (var drive in Directory.GetLogicalDrives())
+            foreach (var drive in Directory.GetDirectories(@"C:\Users\filap\Desktop\zdjęcia\Włochy 2018 Toskania"))
             {
                 // Create a new item for it
                 var item = new TreeViewItem()

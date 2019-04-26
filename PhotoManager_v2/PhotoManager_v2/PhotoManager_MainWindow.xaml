@@ -54,8 +54,10 @@
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="MenuPanel" MaxWidth="300" MinWidth="100"/>
-                <ColumnDefinition x:Name="ContentPanel" Width="2*"/>
+                <ColumnDefinition x:Name="MenuPanel" MaxWidth="500" Width="240" 
+                                  MinWidth="100"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition x:Name="ContentPanel" MinWidth="200"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
@@ -103,10 +105,14 @@
                 </Grid>
             </Grid>
 
-            <Grid Grid.Column="1">
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
+
+            <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition x:Name="ImagePanel" Height="2.5*"/>
-                    <RowDefinition x:Name="SliderPanel" MaxHeight="180"/>
+                    <RowDefinition x:Name="ImagePanel"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition x:Name="SliderPanel" MinHeight="100" Height="120" 
+                                   MaxHeight="360"/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
@@ -243,7 +249,9 @@
                     </Grid>
                 </Grid>
 
-                <Grid Grid.Row="1" Background="LightGray" Margin="5">
+                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch"/>
+
+                <Grid Grid.Row="2" Background="LightGray" Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="100"/>

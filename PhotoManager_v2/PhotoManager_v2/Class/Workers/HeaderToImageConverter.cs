@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoManager_v2.Class.Workers;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Windows.Data;
@@ -25,7 +26,7 @@ namespace PhotoManager_v2
                 return null;
 
             // Get the name of the file/folder
-            string name = MainWindow.GetFileFolderName(path);
+            string name = GetName.GetFileFolderName(path);
 
             // By default, we presume an image
             string image = "Icon/file.png";

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -29,7 +30,7 @@ namespace PhotoManager_v2
         double scale = 1;
         double scaleStep = 0.1;
 
-        private string pathToImage { get; set; }
+        private string PathToImage { get; set; }
 
         #endregion
 
@@ -54,8 +55,8 @@ namespace PhotoManager_v2
             ZoomThePhotoButton.MouseLeftButtonDown += ZoomThePhotoButton_Click;
             ZoomThePhotoButton.PreviewMouseLeftButtonDown += ZoomThePhotoButton_Click;
 
-            pathToImage = @"C:\Users\filap\Desktop\_DSC8277.jpg";
-            ImageHandler.Source = new BitmapImage(new Uri(pathToImage));
+            PathToImage = @"C:\Users\filap\Desktop\_DSC8277.jpg";
+            ImageHandler.Source = new BitmapImage(new Uri(PathToImage));
         }
         #endregion
 
@@ -69,10 +70,10 @@ namespace PhotoManager_v2
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Get every logical drive on the machine
-            foreach (var drive in Directory.GetLogicalDrives())
+            foreach (string drive in Directory.GetLogicalDrives())
             {
                 // Create a new item for it
-                var item = new TreeViewItem()
+                TreeViewItem item = new TreeViewItem()
                 {
                     // Set the header
                     Header = drive,
@@ -88,6 +89,7 @@ namespace PhotoManager_v2
 
                 // Add it to the main tree-view
                 FolderView.Items.Add(item);
+
             }
         }
 
@@ -104,7 +106,7 @@ namespace PhotoManager_v2
         {
             #region Initial Checks
 
-            var item = (TreeViewItem)sender;
+            TreeViewItem item = (TreeViewItem)sender;
 
             // If the item only contains the dummy data
             if (item.Items.Count != 1 || item.Items[0] != null)
@@ -114,7 +116,7 @@ namespace PhotoManager_v2
             item.Items.Clear();
 
             // Get full path
-            var fullPath = (string)item.Tag;
+            string fullPath = (string)item.Tag;
 
             #endregion
 
@@ -272,24 +274,6 @@ namespace PhotoManager_v2
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private void ZoomThePhotoButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (scale <= 2)
-            {
-                scale += scaleStep;
-                ImageHandler.RenderTransform = new ScaleTransform(scale, scale);
-                ScrollViewerImage.Value += scaleStep;
-            }
-        }
-        private void ZoomOutThePhotoButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (scale >= 0.2)
-            {
-                scale -= scaleStep;
-                ImageHandler.RenderTransform = new ScaleTransform(scale, scale);
-                ScrollViewerImage.Value -= scaleStep;
-            }
-        }
         void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (lastDragPoint.HasValue)
@@ -397,6 +381,26 @@ namespace PhotoManager_v2
                 }
             }
         }
+        private void ZoomThePhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (scale <= 2)
+            {
+                ScaleTransformImage.ScaleX = scale;
+                ScaleTransformImage.ScaleY = scale;
+                scale += scaleStep;
+                ScrollViewerImage.Value += scaleStep;
+            }
+        }
+        private void ZoomOutThePhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (scale >= 0.2)
+            {
+                ScaleTransformImage.ScaleX = scale;
+                ScaleTransformImage.ScaleY = scale;
+                scale -= scaleStep;
+                ScrollViewerImage.Value -= scaleStep;
+            }
+        }
         private void RotateRightPhotoButton_Click(object sender, RoutedEventArgs e)
         {
             RotateTransformImage.Angle += 90;
@@ -418,7 +422,7 @@ namespace PhotoManager_v2
 
         private async void EditInOtherProgram_ClickAsync(object sender, RoutedEventArgs e)
         {
-            await OpenEditingProgram.Open(pathToImage);
+            await OpenEditingProgram.Open(PathToImage);
         }
 
         #endregion
@@ -432,8 +436,18 @@ namespace PhotoManager_v2
             {
                 foreach (string fileName in files.FileNames)
                 {
-                    Class.Workers.Slider.Slider slider = new Class.Workers.Slider.Slider();
-                    var picture = slider.AddElement(fileName, SliderStackPanel);
+                    //Class.Workers.Slider.Slider slider = new Class.Workers.Slider.Slider();
+                    //Grid imageSliderHandler = slider.AddElement(fileName);
+                    Image image = new Image();
+
+                    image.HorizontalAlignment = HorizontalAlignment.Center;
+                    image.VerticalAlignment = VerticalAlignment.Center;
+                    image.Margin = new Thickness(3);
+                    image.Stretch = Stretch.Uniform;
+
+                    image.Source = new BitmapImage(new Uri(fileName));
+
+                    SliderStackPanel.Children.Add(image);
                     //picture.MouseLeftButtonDown += Image_MouseDown;//new MouseButtonEventHandler(Image_MouseDown);
                     //slider.ImageHandler.MouseEnter += BacklightSliderElement_MouseEnter;
                 }

@@ -9,12 +9,12 @@ namespace PhotoManager_v2.Class.Workers.Slider
 {
     class Slider
     {
-        internal Image image = new Image();
+        private Image image = new Image();
         private Label label = new Label();
-        internal Grid grid = new Grid();
-        internal Button button = new Button();
+        private Grid grid = new Grid();
+        private Button button = new Button();
 
-        public Slider()
+        public Grid AddElement(string fileName)
         {
             grid.Margin = new Thickness(2);
             grid.RowDefinitions.Add(new RowDefinition());
@@ -32,22 +32,11 @@ namespace PhotoManager_v2.Class.Workers.Slider
 
             grid.Children.Add(image);
             grid.Children.Add(label);
-        }
 
-        public Image AddElement(string fileName, StackPanel stackPanel)
-        {
-            //FileInfo fileInfo = new FileInfo(fileName);
             label.Content = Path.GetFileName(fileName);
             image.Source = new BitmapImage(new Uri(fileName));
 
-            stackPanel.Children.Add(grid);
-
-            return image;
-        }
-
-        public static implicit operator System.Windows.Controls.Slider(Slider v)
-        {
-            throw new NotImplementedException();
+            return grid;
         }
     }
 }

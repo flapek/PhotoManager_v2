@@ -17,6 +17,11 @@
         </Style>
         <Style TargetType="{x:Type Button}">
             <Setter Property="FontSize" Value="10"/>
+            <Setter Property="ToolTipService.InitialShowDelay" Value="1000"/>
+            <Setter Property="ToolTipService.ShowDuration" Value="3000"/>
+            <Setter Property="ToolTipService.Placement" Value="MousePoint"/>
+            <Setter Property="ToolTipService.HorizontalOffset" Value="10"/>
+            <Setter Property="ToolTipService.VerticalOffset" Value="10"/>
         </Style>
     </Window.Resources>
 
@@ -38,7 +43,8 @@
                     </MenuItem>
                     <MenuItem Header="_Edit">
                         <MenuItem x:Name="FastEditMenuItem" Header="_Fast edit"/>
-                        <MenuItem x:Name="EditInOtherProgramMenuItem" Header="Edit in _other program" 
+                        <MenuItem x:Name="EditInOtherProgramMenuItem" 
+                                  Header="Edit in _other program" 
                                   Click="EditInOtherProgram_ClickAsync"/>
                     </MenuItem>
                     <MenuItem Header="_Option" Click="OptionMenuItem_Click"></MenuItem>
@@ -127,10 +133,14 @@
                         <Border BorderBrush="LightGray" BorderThickness="3" Grid.RowSpan="3" 
                                 Grid.ColumnSpan="5">
                             <ScrollViewer x:Name="ImageHandlerScroolViewer" 
-                                        HorizontalScrollBarVisibility="Hidden" Margin="5"
-                                        VerticalScrollBarVisibility="Hidden" Grid.IsSharedSizeScope="True" 
-                                          UseLayoutRounding="True">
-                                <Image x:Name="ImageHandler">
+                                          HorizontalScrollBarVisibility="Hidden" Margin="5"
+                                          VerticalScrollBarVisibility="Hidden" 
+                                          Grid.IsSharedSizeScope="True" 
+                                          UseLayoutRounding="True"
+                                          HorizontalContentAlignment="Center"
+                                          VerticalContentAlignment="Center">
+                                <Image x:Name="ImageHandler" RenderTransformOrigin="0.5,0.5" 
+                                       MaxHeight="2000" MaxWidth="2000">
                                     <Image.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform x:Name="ScaleTransformImage"/>
@@ -140,7 +150,8 @@
                                 </Image>
                             </ScrollViewer>
                         </Border>
-                        <Button x:Name="PreviousPictureButton" Margin="8" Grid.Row="1" Visibility="Visible"/>
+                        <Button x:Name="PreviousPictureButton" Margin="8" Grid.Row="1" 
+                                Visibility="Visible"/>
                         <Button x:Name="NextPictureButton" Margin="8" Grid.Column="4" Grid.Row="1" 
                                 Visibility="Visible"/>
 
@@ -159,12 +170,12 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Slider x:Name="ScrollViewerImage" Minimum="0.2" Maximum="2" SelectionStart="0.5"
-                                HorizontalAlignment="Center" Grid.ColumnSpan="2" Orientation="Vertical"
-                                Visibility="Collapsed"/>
+                        <Slider x:Name="ScrollViewerImage" Minimum="0.2" Maximum="2" 
+                                SelectionStart="0.5" HorizontalAlignment="Center" 
+                                Grid.ColumnSpan="2" Orientation="Vertical" Visibility="Collapsed"/>
 
-                        <Button x:Name="AddPhotoButton" Grid.Row="1" Grid.ColumnSpan="2" Content="Add photo" 
-                                Margin="10" Click="AddPhotoButton_Click"/>
+                        <Button x:Name="AddPhotoButton" Grid.Row="1" Grid.ColumnSpan="2" 
+                                Content="Add photo" Margin="10" Click="AddPhotoButton_Click"/>
                         <Button x:Name="ZoomThePhotoButton" Grid.Row="2" Margin="4">
                             <Button.Foreground>
                                 <ImageBrush/>
@@ -173,11 +184,15 @@
                                 <ImageBrush/>
                             </Button.BorderBrush>
                             <Button.Background>
-                                <ImageBrush Stretch="Uniform" ImageSource="Icon/icons-zoom-in-96.png" />
+                                <ImageBrush Stretch="Uniform" 
+                                            ImageSource="Icon/icons-zoom-in-96.png" />
                             </Button.Background>
+                            <Button.ToolTip>
+                                Zoom photo
+                            </Button.ToolTip>
                         </Button>
-                        <Button x:Name="ZoomOutThePhotoButton" Grid.Row="2" Grid.Column="1" Margin="4" 
-                                Click="ZoomOutThePhotoButton_Click">
+                        <Button x:Name="ZoomOutThePhotoButton" Grid.Row="2" Grid.Column="1" 
+                                Margin="4" Click="ZoomOutThePhotoButton_Click">
                             <Button.Foreground>
                                 <ImageBrush/>
                             </Button.Foreground>
@@ -185,8 +200,12 @@
                                 <ImageBrush/>
                             </Button.BorderBrush>
                             <Button.Background>
-                                <ImageBrush Stretch="Uniform" ImageSource="Icon/icons-zoom-out-96.png" />
+                                <ImageBrush Stretch="Uniform" 
+                                            ImageSource="Icon/icons-zoom-out-96.png" />
                             </Button.Background>
+                            <Button.ToolTip>
+                                Zoom out photo
+                            </Button.ToolTip>
                         </Button>
                         <Button x:Name="RotateRightPhotoButton" Grid.Row="3" Margin="4" 
                                 Click="RotateRightPhotoButton_Click">
@@ -197,11 +216,15 @@
                                 <ImageBrush/>
                             </Button.BorderBrush>
                             <Button.Background>
-                                <ImageBrush Stretch="Uniform" ImageSource="Icon/icons-rotate-right-96.png" />
+                                <ImageBrush Stretch="Uniform" 
+                                            ImageSource="Icon/icons-rotate-right-96.png" />
                             </Button.Background>
+                            <Button.ToolTip>
+                                Rotate the photo 90 degrees to the right
+                            </Button.ToolTip>
                         </Button>
-                        <Button x:Name="RotateLeftPhotoButton" Grid.Row="3" Grid.Column="2" Margin="4" 
-                                Click="RotateLeftPhotoButton_Click">
+                        <Button x:Name="RotateLeftPhotoButton" Grid.Row="3" Grid.Column="2" 
+                                Margin="4" Click="RotateLeftPhotoButton_Click">
                             <Button.Foreground>
                                 <ImageBrush/>
                             </Button.Foreground>
@@ -209,8 +232,12 @@
                                 <ImageBrush/>
                             </Button.BorderBrush>
                             <Button.Background>
-                                <ImageBrush Stretch="Uniform" ImageSource="Icon/icons-rotate-left-96.png" />
+                                <ImageBrush Stretch="Uniform" 
+                                            ImageSource="Icon/icons-rotate-left-96.png" />
                             </Button.Background>
+                            <Button.ToolTip>
+                                Rotate the photo 90 degrees to the left
+                            </Button.ToolTip>
                         </Button>
 
                     </Grid>
@@ -223,9 +250,10 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0" Margin="5">
-                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                            <StackPanel x:Name="SliderStackPanel" Grid.Row="0" Orientation="Horizontal" 
-                                        Grid.ColumnSpan="3"/>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                                      VerticalScrollBarVisibility="Disabled">
+                            <StackPanel x:Name="SliderStackPanel" Grid.Row="0" 
+                                        Orientation="Horizontal" Grid.ColumnSpan="3"/>
                         </ScrollViewer>
                     </Grid>
 

@@ -28,8 +28,9 @@ namespace PhotoManager_v2
         private Point? lastMousePositionOnTarget;
         private Point? lastDragPoint;
 
-        double scale = 1;
-        double scaleStep = 0.1;
+        private double scale = 1;
+        private double scaleStep = 0.1;
+        string splahImage = "SplashScreen.jpg";
 
         private string PathToImage { get; set; }
 
@@ -42,10 +43,10 @@ namespace PhotoManager_v2
         /// </summary>
         public MainWindow()
         {
-            SplashScreen splash = new SplashScreen("download.jpg");
-            splash.Show(true);
-            Thread.Sleep(1000);
-            splash.Close(TimeSpan.FromSeconds(10));
+            SplashScreen splashScreen = new SplashScreen(splahImage);
+            splashScreen.Show(true);
+            Thread.Sleep(4000);
+            splashScreen.Close(TimeSpan.FromSeconds(5));
 
             InitializeComponent();
             //LoadDirectoriesTree();

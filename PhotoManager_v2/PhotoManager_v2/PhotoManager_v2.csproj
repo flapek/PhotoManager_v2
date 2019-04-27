@@ -177,7 +177,7 @@
       <DependentUpon>PhotoManager.DataBase.edmx</DependentUpon>
       <LastGenOutput>PhotoManager.cs</LastGenOutput>
     </Content>
-    <None Include="download.jpg" />
+    <Resource Include="SplashScreen.jpg" />
     <Resource Include="Icon\drive.png" />
     <Resource Include="Icon\file.png" />
     <Resource Include="Icon\folder-open.png" />

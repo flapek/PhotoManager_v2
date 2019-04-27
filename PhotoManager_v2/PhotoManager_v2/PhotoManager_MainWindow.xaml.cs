@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Reflection;
-using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -43,6 +42,11 @@ namespace PhotoManager_v2
         /// </summary>
         public MainWindow()
         {
+            SplashScreen splash = new SplashScreen("download.jpg");
+            splash.Show(true);
+            Thread.Sleep(1000);
+            splash.Close(TimeSpan.FromSeconds(10));
+
             InitializeComponent();
             //LoadDirectoriesTree();
 

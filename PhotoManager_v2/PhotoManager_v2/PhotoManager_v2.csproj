@@ -69,7 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Class\Workers\Folder.cs" />
+    <Compile Include="Class\Workers\GetName.cs" />
     <Compile Include="Class\Workers\HeaderToImageConverter.cs" />
     <Compile Include="Class\Workers\Open\FileExplorer.cs" />
     <Compile Include="Class\Workers\Open\FolderExplorer.cs" />
@@ -177,6 +177,7 @@
       <DependentUpon>PhotoManager.DataBase.edmx</DependentUpon>
       <LastGenOutput>PhotoManager.cs</LastGenOutput>
     </Content>
+    <None Include="download.jpg" />
     <Resource Include="Icon\drive.png" />
     <Resource Include="Icon\file.png" />
     <Resource Include="Icon\folder-open.png" />

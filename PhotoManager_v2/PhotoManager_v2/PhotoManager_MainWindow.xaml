@@ -13,10 +13,11 @@
         WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.Resources>
         <Style TargetType="{x:Type TreeViewItem}">
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="10"/>
         </Style>
         <Style TargetType="{x:Type Button}">
             <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="ToolTipService.InitialShowDelay" Value="1000"/>
             <Setter Property="ToolTipService.ShowDuration" Value="3000"/>
             <Setter Property="ToolTipService.Placement" Value="MousePoint"/>
@@ -47,14 +48,14 @@
                                   Header="Edit in _other program" 
                                   Click="EditInOtherProgram_ClickAsync"/>
                     </MenuItem>
-                    <MenuItem Header="_Option" Click="OptionMenuItem_Click"></MenuItem>
+                    <MenuItem Header="_Option" Click="OptionMenuItem_Click"/>
                 </Menu>
             </Grid>
         </Grid>
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="MenuPanel" MaxWidth="500" Width="240" 
+                <ColumnDefinition x:Name="MenuPanel" MaxWidth="500" Width="270" 
                                   MinWidth="100"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition x:Name="ContentPanel" MinWidth="200"/>
@@ -74,7 +75,8 @@
                                     <Setter.Value>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Width="20" Margin="3" Source="{Binding 
+                                                <Image Width="20" Margin="3" 
+                                                       Source="{Binding 
                                                     RelativeSource={RelativeSource
                                                     Mode=FindAncestor, 
                                                     AncestorType={x:Type TreeViewItem}},
@@ -111,8 +113,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition x:Name="ImagePanel"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition x:Name="SliderPanel" MinHeight="100" Height="120" 
-                                   MaxHeight="360"/>
+                    <RowDefinition x:Name="SliderPanel" MinHeight="100" Height="140" 
+                                   MaxHeight="200"/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">

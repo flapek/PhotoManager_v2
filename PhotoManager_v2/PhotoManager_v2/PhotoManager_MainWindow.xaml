@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoManager_v2"
         mc:Ignorable="d"
-        
-        Loaded="Window_Loaded"
+
+        Loaded="Window_Loaded" Closing="MainWindow_Closing"
         
         Title="PhotoManager" Height="450" Width="800" MinHeight="300" MinWidth="500" 
-        Closing="MainWindow_Closing" ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+        ScrollViewer.VerticalScrollBarVisibility="Disabled" 
         WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.Resources>
         <Style TargetType="{x:Type TreeViewItem}">

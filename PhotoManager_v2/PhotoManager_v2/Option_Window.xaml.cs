@@ -22,11 +22,15 @@ namespace PhotoManager_v2
         {
             if (isDataDirty)
             {
-                userSettings.PathToEditingProgram = SourceEditingProgramTextBox.Text;
-                userSettings.PathToMainFolder = SourceToMainFolderTextBox.Text;
-                userSettings.Save();
-                SaveOptionButton.IsEnabled = false;
-                isDataDirty = false;
+                MessageBoxResult messageBoxResult = MessageBox.Show(Constants.MessageBoxStringWarningSaveOption, Constants.CaptionNameWarning, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (MessageBoxResult.Yes == messageBoxResult)
+                {
+                    userSettings.PathToEditingProgram = SourceEditingProgramTextBox.Text;
+                    userSettings.PathToMainFolder = SourceToMainFolderTextBox.Text;
+                    userSettings.Save();
+                    SaveOptionButton.IsEnabled = false;
+                    isDataDirty = false;
+                }
             }
         }          //skończone
         private void DefaultOptionButton_Click(object sender, RoutedEventArgs e)
@@ -67,7 +71,7 @@ namespace PhotoManager_v2
         {
             if (isDataDirty)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show(Constants.MessageBoxStringClose, Constants.CaptionNameClose, MessageBoxButton.YesNo);
+                MessageBoxResult messageBoxResult = MessageBox.Show(Constants.MessageBoxStringClose, Constants.CaptionNameClose, MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (MessageBoxResult.Yes == messageBoxResult)
                 {
                     Close();
@@ -118,7 +122,7 @@ namespace PhotoManager_v2
         {
             if (isDataDirty)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show(Constants.MessageBoxStringClose, Constants.CaptionNameClose, MessageBoxButton.YesNo);
+                MessageBoxResult messageBoxResult = MessageBox.Show(Constants.MessageBoxStringClose, Constants.CaptionNameClose, MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (MessageBoxResult.No == messageBoxResult)
                 {
                     e.Cancel = true;

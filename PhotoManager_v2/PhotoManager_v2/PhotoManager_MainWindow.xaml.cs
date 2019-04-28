@@ -45,11 +45,13 @@ namespace PhotoManager_v2
         {
             SplashScreen splashScreen = new SplashScreen(splahImage);
             splashScreen.Show(true);
-            Thread.Sleep(4000);
+            Thread.Sleep(2500);
             splashScreen.Close(TimeSpan.FromSeconds(5));
 
             InitializeComponent();
             //LoadDirectoriesTree();
+
+            #region Image Events
 
             ImageHandlerScroolViewer.ScrollChanged += OnImageHandlerScroolViewerScrollChanged;
             ImageHandlerScroolViewer.MouseLeftButtonUp += OnMouseLeftButtonUp;
@@ -62,8 +64,12 @@ namespace PhotoManager_v2
             ZoomThePhotoButton.MouseLeftButtonDown += ZoomThePhotoButton_Click;
             ZoomThePhotoButton.PreviewMouseLeftButtonDown += ZoomThePhotoButton_Click;
 
-            PathToImage = @"C:\Users\filap\Desktop\_DSC8277.jpg";
-            ImageHandler.Source = new BitmapImage(new Uri(PathToImage));
+            #endregion
+
+            RenderOptions.SetBitmapScalingMode(ImageHandler, BitmapScalingMode.HighQuality);
+
+            //PathToImage = @"C:\Users\filap\Desktop\_DSC8277.jpg";
+            //ImageHandler.Source = new BitmapImage(new Uri(PathToImage));
         }
         #endregion
 
@@ -97,6 +103,8 @@ namespace PhotoManager_v2
                 // Add it to the main tree-view
                 FolderView.Items.Add(item);
 
+                // Listen to select item 
+                item.Selected += Item_Selected;
             }
         }
 
@@ -206,7 +214,7 @@ namespace PhotoManager_v2
 
         #region Helpers
 
-        
+
 
         #endregion
 
@@ -217,7 +225,7 @@ namespace PhotoManager_v2
         /// </summary>
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Do you want close app?", "Close", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Do you want close app?", "Close", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (MessageBoxResult.No == result)
             {
                 e.Cancel = true;
@@ -411,6 +419,22 @@ namespace PhotoManager_v2
 
         #endregion
 
+        #region Choose tree item
+
+        /// <summary>
+        /// When user choose item, image or images from folder is loaded to slider
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void Item_Selected(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = sender as TreeViewItem;
+
+            MessageBox.Show(item.Tag.ToString());
+        }
+
+        #endregion
 
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
@@ -422,21 +446,33 @@ namespace PhotoManager_v2
                 {
                     //Class.Workers.Slider.Slider slider = new Class.Workers.Slider.Slider();
                     //Grid imageSliderHandler = slider.AddElement(fileName);
-                    Image image = new Image();
+                    Image image = new Image
+                    {
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(3),
+                        Stretch = Stretch.Uniform,
+                        StretchDirection = StretchDirection.Both,
+                        Source = new BitmapImage(new Uri(fileName))
+                    };
 
-                    image.HorizontalAlignment = HorizontalAlignment.Center;
-                    image.VerticalAlignment = VerticalAlignment.Center;
-                    image.Margin = new Thickness(3);
-                    image.Stretch = Stretch.Uniform;
-
-                    image.Source = new BitmapImage(new Uri(fileName));
+                    RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.Fant);
 
                     SliderStackPanel.Children.Add(image);
+
+                    image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
                     //picture.MouseLeftButtonDown += Image_MouseDown;//new MouseButtonEventHandler(Image_MouseDown);
                     //slider.ImageHandler.MouseEnter += BacklightSliderElement_MouseEnter;
                 }
             }
         }       //dokończyć
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Image image = sender as Image;
+            PathToImage = image.Source.ToString();
+            ImageHandler.Source = new BitmapImage(new Uri(PathToImage));
+        }
     }
 }
 

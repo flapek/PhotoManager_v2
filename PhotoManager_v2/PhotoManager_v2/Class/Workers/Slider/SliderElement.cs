@@ -7,9 +7,9 @@ using System.Windows.Media.Imaging;
 
 namespace PhotoManager_v2.Class.Workers.Slider
 {
-    class Slider
+    class SliderElement
     {
-        private Image image = new Image();
+        public Image image = new Image();
         private Label label = new Label();
         private Grid grid = new Grid();
         private Button button = new Button();
@@ -38,5 +38,6 @@ namespace PhotoManager_v2.Class.Workers.Slider
 
             return grid;
         }
+
     }
 }

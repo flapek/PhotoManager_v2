@@ -73,7 +73,7 @@
     <Compile Include="Class\Workers\HeaderToImageConverter.cs" />
     <Compile Include="Class\Workers\Open\FileExplorer.cs" />
     <Compile Include="Class\Workers\Open\FolderExplorer.cs" />
-    <Compile Include="Class\Workers\Slider\Slider.cs" />
+    <Compile Include="Class\Workers\Slider\SliderElement.cs" />
     <Compile Include="DataBase\Data\Authors.cs">
       <DependentUpon>PhotoManager.tt</DependentUpon>
     </Compile>

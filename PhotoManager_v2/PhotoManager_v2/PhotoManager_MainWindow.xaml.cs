@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.Open;
 using PhotoManager_v2.Class.Workers;
+using PhotoManager_v2.Class.Workers.Slider;
 
 namespace PhotoManager_v2
 {
@@ -49,7 +50,6 @@ namespace PhotoManager_v2
             splashScreen.Close(TimeSpan.FromSeconds(5));
 
             InitializeComponent();
-            //LoadDirectoriesTree();
 
             #region Image Events
 
@@ -67,9 +67,6 @@ namespace PhotoManager_v2
             #endregion
 
             RenderOptions.SetBitmapScalingMode(ImageHandler, BitmapScalingMode.HighQuality);
-
-            //PathToImage = @"C:\Users\filap\Desktop\_DSC8277.jpg";
-            //ImageHandler.Source = new BitmapImage(new Uri(PathToImage));
         }
         #endregion
 
@@ -429,43 +426,21 @@ namespace PhotoManager_v2
 
         private void Item_Selected(object sender, RoutedEventArgs e)
         {
-            TreeViewItem item = sender as TreeViewItem;
+            TreeViewItem item = FolderView.SelectedItem as TreeViewItem;
 
-            MessageBox.Show(item.Tag.ToString());
-        }
+            if (new FileInfo(item.Tag.ToString()).Attributes.HasFlag(FileAttributes.Directory))
+            {
+                SliderStackPanel.Children.Clear();
+            }
+            else
+            {
+                Image image = AddSliderElement(item.Tag.ToString());
+                SliderStackPanel.Children.Add(image);
+                image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+            }
+        }   //Dodać obsługe do ładowania całego folderu zdjęć do slidera
 
         #endregion
-
-        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
-        {
-            FileExplorer fileExplorer = new FileExplorer("JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tiff)|*.tiff", true);
-            var files = fileExplorer.Open(Environment.SpecialFolder.Desktop);
-            if (fileExplorer.verificate == true)
-            {
-                foreach (string fileName in files.FileNames)
-                {
-                    //Class.Workers.Slider.Slider slider = new Class.Workers.Slider.Slider();
-                    //Grid imageSliderHandler = slider.AddElement(fileName);
-                    Image image = new Image
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Margin = new Thickness(3),
-                        Stretch = Stretch.Uniform,
-                        StretchDirection = StretchDirection.Both,
-                        Source = new BitmapImage(new Uri(fileName))
-                    };
-
-                    RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.Fant);
-
-                    SliderStackPanel.Children.Add(image);
-
-                    image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
-                    //picture.MouseLeftButtonDown += Image_MouseDown;//new MouseButtonEventHandler(Image_MouseDown);
-                    //slider.ImageHandler.MouseEnter += BacklightSliderElement_MouseEnter;
-                }
-            }
-        }       //dokończyć
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -473,6 +448,35 @@ namespace PhotoManager_v2
             PathToImage = image.Source.ToString();
             ImageHandler.Source = new BitmapImage(new Uri(PathToImage));
         }
+
+        #region Slider Element
+
+        /// <summary>
+        /// Return slider element 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+
+        private Image AddSliderElement(string fileName)
+        {
+            Image image = new Image
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(5),
+                Stretch = Stretch.Uniform,
+                StretchDirection = StretchDirection.Both,
+                Source = new BitmapImage(new Uri(fileName))
+            };
+
+            RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.Fant);
+            image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+
+            return image;
+        }
+
+        #endregion
+
     }
 }
 

@@ -182,8 +182,6 @@
                                 SelectionStart="0.5" HorizontalAlignment="Center" 
                                 Grid.ColumnSpan="2" Orientation="Vertical" Visibility="Collapsed"/>
 
-                        <Button x:Name="AddPhotoButton" Grid.Row="1" Grid.ColumnSpan="2" 
-                                Content="Add photo" Margin="10" Click="AddPhotoButton_Click"/>
                         <Button x:Name="ZoomThePhotoButton" Grid.Row="2" Margin="4">
                             <Button.Foreground>
                                 <ImageBrush/>

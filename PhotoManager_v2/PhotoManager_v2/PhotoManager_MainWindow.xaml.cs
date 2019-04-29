@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shell;
 using PhotoManager_v2.Class;
-using PhotoManager_v2.Class.Open;
 using PhotoManager_v2.Class.Workers;
-using PhotoManager_v2.Class.Workers.Slider;
 
 namespace PhotoManager_v2
 {
@@ -101,11 +102,13 @@ namespace PhotoManager_v2
                 FolderView.Items.Add(item);
 
                 // Listen to select item 
-                item.Selected += Item_Selected;
+                //item.Selected += Item_Selected;
+                item.MouseDoubleClick += Item_MouseDoubleClick;
             }
         }
 
         #endregion
+        //poprwaić obsługe item click/selected
 
         #region Folder Expanded
 
@@ -207,7 +210,8 @@ namespace PhotoManager_v2
             #endregion
         }
 
-        #endregion
+        #endregion      
+        //zmienić kod tak aby były wyświetlane tylko pliki z rozszerzeniem jpg
 
         #region Helpers
 
@@ -431,16 +435,62 @@ namespace PhotoManager_v2
             if (new FileInfo(item.Tag.ToString()).Attributes.HasFlag(FileAttributes.Directory))
             {
                 SliderStackPanel.Children.Clear();
+
+                DirectoryInfo directory = new DirectoryInfo(item.Tag.ToString());
+                FileInfo[] files = directory.GetFiles("*.jpg");
+                foreach (FileInfo file in files)
+                {
+                    Image image = AddSliderElement(file.FullName);
+                    SliderStackPanel.Children.Add(image);
+                    image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+                }
             }
             else
             {
+                SliderStackPanel.Children.Clear();
+
                 Image image = AddSliderElement(item.Tag.ToString());
                 SliderStackPanel.Children.Add(image);
                 image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
             }
-        }   //Dodać obsługe do ładowania całego folderu zdjęć do slidera
+        }
+
+        private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            TreeViewItem item = FolderView.SelectedItem as TreeViewItem;
+
+            if (new FileInfo(item.Tag.ToString()).Attributes.HasFlag(FileAttributes.Directory))
+            {
+                SliderStackPanel.Children.Clear();
+
+                DirectoryInfo directory = new DirectoryInfo(item.Tag.ToString());
+                FileInfo[] files = directory.GetFiles("*.jpg");
+                foreach (FileInfo file in files)
+                {
+                    Image image = AddSliderElement(file.FullName);
+                    SliderStackPanel.Children.Add(image);
+                    image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+                }
+            }
+            else
+            {
+                SliderStackPanel.Children.Clear();
+
+                Image image = AddSliderElement(item.Tag.ToString());
+                SliderStackPanel.Children.Add(image);
+                image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+            }
+        }
 
         #endregion
+
+        #region Listen for click slider item
+
+        /// <summary>
+        /// When user choose slider item  
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -448,6 +498,8 @@ namespace PhotoManager_v2
             PathToImage = image.Source.ToString();
             ImageHandler.Source = new BitmapImage(new Uri(PathToImage));
         }
+
+        #endregion
 
         #region Slider Element
 
@@ -471,9 +523,40 @@ namespace PhotoManager_v2
 
             RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.Fant);
             image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+            image.MouseLeftButtonDown += GetInfo;
 
             return image;
         }
+
+        #endregion
+        //przenieść metode do osobnej klasy i zrobić aby była asynchroniczna
+
+        #region Show Panel Info
+
+        /// <summary>
+        /// Show info about photo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void InfoPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (InfoPanel.Visibility == Visibility.Hidden)
+                InfoPanel.Visibility = Visibility.Visible;
+            else InfoPanel.Visibility = Visibility.Hidden;
+        }
+
+        private void GetInfo(object sender, MouseButtonEventArgs e)
+        {
+            Image image = sender as Image;
+            FileInfo fileInfo = new FileInfo(image.Source.ToString().Substring(8));
+            TextBlockImageName.Text = fileInfo.Name;
+            TextBlockImageFullName.Text = fileInfo.FullName;
+            TextBlockImageSize.Text = $"{fileInfo.Length.ToString() } bytes";
+            TextBlockImageCreationDate.Text = fileInfo.CreationTimeUtc.ToString();
+            TextBlockImageModificationDate.Text = fileInfo.LastWriteTimeUtc.ToString();
+        } //dodać obsługę wyciągania informacji z zdjęcia 
+
 
         #endregion
 

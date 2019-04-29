@@ -24,7 +24,14 @@
             <Setter Property="ToolTipService.HorizontalOffset" Value="10"/>
             <Setter Property="ToolTipService.VerticalOffset" Value="10"/>
         </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+
+        </Style>
     </Window.Resources>
+
 
     <Grid>
         <Grid.RowDefinitions>
@@ -159,9 +166,69 @@
                             </ScrollViewer>
                         </Border>
                         <Button x:Name="PreviousPictureButton" Margin="8" Grid.Row="1" 
-                                Visibility="Visible"/>
-                        <Button x:Name="NextPictureButton" Margin="8" Grid.Column="4" Grid.Row="1" 
-                                Visibility="Visible"/>
+                                Visibility="Hidden"/>
+                        <Button x:Name="NextPictureButton" Margin="8" Grid.Column="4" 
+                                Grid.Row="1" Visibility="Hidden"/>
+
+                        <Grid x:Name="InfoPanel" Grid.Row="0" Grid.Column="3" Grid.RowSpan="3" 
+                              Grid.ColumnSpan="3" Visibility="Hidden">
+                            <TabControl>
+                                <TabItem Header="File">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="Name"/>
+                                        <TextBlock Text="Full name" Grid.Row="1"/>
+                                        <TextBlock Text="Size" Grid.Row="2"/>
+                                        <TextBlock Text="Creation date" Grid.Row="3"/>
+                                        <TextBlock Text="Modification date" Grid.Row="4"/>
+
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="0" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageName"/>
+                                        </ScrollViewer>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="1" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageFullName"/>
+                                        </ScrollViewer>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="2" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageSize"/>
+                                        </ScrollViewer>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="3" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageCreationDate"/>
+                                        </ScrollViewer>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="4" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageModificationDate"/>
+                                        </ScrollViewer>
+                                        
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Header="Description">
+
+                                </TabItem>
+                                <TabItem Header="Image">
+
+                                </TabItem>
+                            </TabControl>
+                        </Grid>
 
                     </Grid>
 
@@ -180,7 +247,25 @@
 
                         <Slider x:Name="ScrollViewerImage" Minimum="0.2" Maximum="2" 
                                 SelectionStart="0.5" HorizontalAlignment="Center" 
-                                Grid.ColumnSpan="2" Orientation="Vertical" Visibility="Collapsed"/>
+                                Grid.ColumnSpan="2" Orientation="Vertical" 
+                                Visibility="Collapsed"/>
+
+                        <Button x:Name="InfoPhotoButton" Grid.Row="1" Margin="4" 
+                                Click="InfoPhotoButton_Click">
+                            <Button.Foreground>
+                                <ImageBrush/>
+                            </Button.Foreground>
+                            <Button.BorderBrush>
+                                <ImageBrush/>
+                            </Button.BorderBrush>
+                            <Button.Background>
+                                <ImageBrush Stretch="Uniform" 
+                                            ImageSource="Icon/icons-about-96.png" />
+                            </Button.Background>
+                            <Button.ToolTip>
+                                Info about photo
+                            </Button.ToolTip>
+                        </Button>
 
                         <Button x:Name="ZoomThePhotoButton" Grid.Row="2" Margin="4">
                             <Button.Foreground>

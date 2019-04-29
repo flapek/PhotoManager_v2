@@ -38,6 +38,5 @@ namespace PhotoManager_v2.Class.Workers.Slider
 
             return grid;
         }
-
     }
 }

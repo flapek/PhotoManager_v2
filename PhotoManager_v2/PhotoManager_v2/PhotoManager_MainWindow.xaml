@@ -25,10 +25,10 @@
             <Setter Property="ToolTipService.VerticalOffset" Value="10"/>
         </Style>
         <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="10"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
-
         </Style>
     </Window.Resources>
 
@@ -154,8 +154,7 @@
                                           UseLayoutRounding="True"
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center">
-                                <Image x:Name="ImageHandler" RenderTransformOrigin="0.5,0.5" 
-                                       MaxHeight="2000" MaxWidth="2000">
+                                <Image x:Name="ImageHandler" RenderTransformOrigin="0.5,0.5">
                                     <Image.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform x:Name="ScaleTransformImage"/>
@@ -171,7 +170,7 @@
                                 Grid.Row="1" Visibility="Hidden"/>
 
                         <Grid x:Name="InfoPanel" Grid.Row="0" Grid.Column="3" Grid.RowSpan="3" 
-                              Grid.ColumnSpan="3" Visibility="Hidden">
+                              Grid.ColumnSpan="3" Visibility="Hidden" Margin="10">
                             <TabControl>
                                 <TabItem Header="File">
                                     <Grid>
@@ -180,6 +179,11 @@
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                             <RowDefinition/>
@@ -222,10 +226,98 @@
                                     </Grid>
                                 </TabItem>
                                 <TabItem Header="Description">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
 
+                                        <TextBlock Text="Title"/>
+                                        <TextBlock Text="Subject" Grid.Row="1"/>
+                                        <TextBlock Text="Tags" Grid.Row="2"/>
+                                        <TextBlock Text="Coment" Grid.Row="3"/>
+
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="0" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageTitle"/>
+                                        </ScrollViewer>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="1" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageSubject"/>
+                                        </ScrollViewer>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="2" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageTags"/>
+                                        </ScrollViewer>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="3" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageComent"/>
+                                        </ScrollViewer>
+   
+                                    </Grid>
                                 </TabItem>
                                 <TabItem Header="Image">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
 
+                                        <TextBlock Text="Camera model"/>
+                                        <TextBlock Text="Aperture unit" Grid.Row="1"/>
+                                        <TextBlock Text="Exposure time" Grid.Row="2"/>
+                                        <TextBlock Text="Focal lenght" Grid.Row="3"/>
+
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="0" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageCameraModel"/>
+                                        </ScrollViewer>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="1" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageApertureUnit"/>
+                                        </ScrollViewer>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="2" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageExposureTime"/>
+                                        </ScrollViewer>
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      Grid.Row="3" Grid.Column="1">
+                                            <TextBlock x:Name="TextBlockImageFocalLenght"/>
+                                        </ScrollViewer>
+
+                                    </Grid>
                                 </TabItem>
                             </TabControl>
                         </Grid>

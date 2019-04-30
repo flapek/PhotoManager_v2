@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shell;
 using PhotoManager_v2.Class;
 using PhotoManager_v2.Class.Workers;
 
@@ -524,7 +521,7 @@ namespace PhotoManager_v2
             RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.Fant);
             image.MouseLeftButtonDown += Image_MouseLeftButtonDown;
             image.MouseLeftButtonDown += GetInfo;
-
+            
             return image;
         }
 
@@ -549,17 +546,48 @@ namespace PhotoManager_v2
         private void GetInfo(object sender, MouseButtonEventArgs e)
         {
             Image image = sender as Image;
-            FileInfo fileInfo = new FileInfo(image.Source.ToString().Substring(8));
+            string fileName = image.Source.ToString().Substring(8);
+            FileInfo fileInfo = new FileInfo(fileName);
+
+            FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            BitmapSource bitmapSource = BitmapFrame.Create(fileStream);
+            BitmapMetadata bitmapMetadata = (BitmapMetadata)bitmapSource.Metadata;
+
+            #region File
+
             TextBlockImageName.Text = fileInfo.Name;
             TextBlockImageFullName.Text = fileInfo.FullName;
             TextBlockImageSize.Text = $"{fileInfo.Length.ToString() } bytes";
             TextBlockImageCreationDate.Text = fileInfo.CreationTimeUtc.ToString();
             TextBlockImageModificationDate.Text = fileInfo.LastWriteTimeUtc.ToString();
+
+            #endregion
+
+            #region Description
+
+            TextBlockImageTitle.Text = bitmapMetadata.Title;
+            TextBlockImageSubject.Text = bitmapMetadata.Subject;
+            TextBlockImageComent.Text = bitmapMetadata.Comment;
+            TextBlockImageTags.Text = "";
+
+            #endregion
+
+            #region Image
+            TextBlockImageCameraModel.Text = bitmapMetadata.CameraModel;
+            TextBlockImageApertureUnit.Text = "";
+            TextBlockImageExposureTime.Text = "";
+            TextBlockImageFocalLenght.Text = "";
+
+            #endregion
+
+            fileStream.Close();
+            fileStream.Dispose();
+
         } //dodać obsługę wyciągania informacji z zdjęcia 
 
 
         #endregion
-
+        //poprawić wyciąganie danych z pliku 
     }
 }
 

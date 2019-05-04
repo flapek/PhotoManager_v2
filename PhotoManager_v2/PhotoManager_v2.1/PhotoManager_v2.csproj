@@ -102,33 +102,6 @@
     <Compile Include="Class\Workers\Open\FileExplorer.cs" />
     <Compile Include="Class\Workers\Open\FolderExplorer.cs" />
     <Compile Include="Class\Workers\Slider\SliderElement.cs" />
-    <Compile Include="DataBase\Data\Authors.cs">
-      <DependentUpon>StoreForPhoto.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\Data\Folder.cs">
-      <DependentUpon>StoreForPhoto.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\Data\Photo.cs">
-      <DependentUpon>StoreForPhoto.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\Data\StoreForPhoto.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StoreForPhoto.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\Data\StoreForPhoto.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StoreForPhoto.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\Data\StoreForPhoto.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StoreForPhoto.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\Data\Tags.cs">
-      <DependentUpon>StoreForPhoto.tt</DependentUpon>
-    </Compile>
     <Compile Include="UserSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -177,13 +150,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DataBase\Data\StoreForPhoto.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StoreForPhoto.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DataBase\Data\StoreForPhoto.edmx.diagram">
-      <DependentUpon>StoreForPhoto.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="PhotoManager_v2_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
@@ -214,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataBase\Class\" />
+    <Folder Include="DataBase\Data\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -237,18 +204,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DataBase\Data\StoreForPhoto.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StoreForPhoto.edmx</DependentUpon>
-      <LastGenOutput>StoreForPhoto.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataBase\Data\StoreForPhoto.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StoreForPhoto.edmx</DependentUpon>
-      <LastGenOutput>StoreForPhoto.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

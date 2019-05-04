@@ -109,7 +109,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0" Margin="5" Content="Add dictionary"/>
-                    <Button x:Name="AddPhotoButton" Grid.Column="1" Margin="5" Content="Add photo" Click="AddPhotoButton_Click"/>
+                    <Button Grid.Column="1" Margin="5" Content="Add photo"/>
                     <Button Grid.Column="2" Margin="5" Content="Delete"/>
                 </Grid>
             </Grid>

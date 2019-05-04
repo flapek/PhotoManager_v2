@@ -9,7 +9,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using PhotoManager_v2.Class;
-using PhotoManager_v2.Class.Open;
 using PhotoManager_v2.Class.Workers;
 
 namespace PhotoManager_v2
@@ -586,37 +585,9 @@ namespace PhotoManager_v2
 
         } //dodać obsługę wyciągania informacji z zdjęcia 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         #endregion
         //poprawić wyciąganie danych z pliku 
-
-        #region Photo
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
-        {
-            FileExplorer fileExplorer = new FileExplorer("JPG (*.jpg)|*.jpg|TIFF (*.tiff)|*.tiff|PNG (*.png)|*.png", true);
-            Microsoft.Win32.OpenFileDialog file = fileExplorer.Open(Environment.SpecialFolder.Desktop);
-            if (fileExplorer.verificate)
-            {
-                foreach (string item in file.FileNames)
-                {
-                    string s = Convert.ToString(item);
-                    MessageBox.Show(s);
-                }
-            }
-        }
-
-        #endregion
     }
 }
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PhotoManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PhotoManagerDataBase_v2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Authors">
           <Key>
             <PropertyRef Name="AuthorId" />
@@ -13,23 +13,32 @@
           <Property Name="FirstName" Type="varchar" MaxLength="60" />
           <Property Name="LastName" Type="varchar" MaxLength="60" />
         </EntityType>
+        <EntityType Name="Folder">
+          <Key>
+            <PropertyRef Name="FolderId" />
+          </Key>
+          <Property Name="FolderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="OverridingFolder" Type="int" />
+        </EntityType>
         <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="PhotoId" />
           </Key>
           <Property Name="PhotoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PhotoName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="DateOfExecutin" Type="date" />
           <Property Name="AuthorId" Type="int" />
           <Property Name="TagId" Type="int" />
-          <Property Name="Height" Type="int" Nullable="false" />
-          <Property Name="Width" Type="int" Nullable="false" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Width" Type="int" />
           <Property Name="Size" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="PathFolder" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FolderId" Type="int" Nullable="false" />
           <Property Name="Comment" Type="varchar" MaxLength="1000" />
           <Property Name="ApertureUnit" Type="decimal" Precision="18" Scale="0" />
           <Property Name="ExposureTime" Type="decimal" Precision="18" Scale="0" />
           <Property Name="FocalLenght" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Photo" Type="image" Nullable="false" />
         </EntityType>
         <EntityType Name="Tags">
           <Key>
@@ -38,7 +47,19 @@
           <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tag" Type="varchar" MaxLength="60" />
         </EntityType>
-        <Association Name="FK__Photo__AuthorId__52593CB8">
+        <Association Name="FK__Folder__Overridi__3E52440B">
+          <End Role="Folder" Type="Self.Folder" Multiplicity="0..1" />
+          <End Role="Folder1" Type="Self.Folder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Folder">
+              <PropertyRef Name="FolderId" />
+            </Principal>
+            <Dependent Role="Folder1">
+              <PropertyRef Name="OverridingFolder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photo__AuthorId__3F466844">
           <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
           <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -50,7 +71,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Photo__TagId__534D60F1">
+        <Association Name="FK__Photo__FolderId__3D5E1FD2">
+          <End Role="Folder" Type="Self.Folder" Multiplicity="1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Folder">
+              <PropertyRef Name="FolderId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="FolderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photo__TagId__403A8C7D">
           <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
           <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -62,15 +95,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PhotoManagerModelStoreContainer">
+        <EntityContainer Name="PhotoManagerDataBase_v2ModelStoreContainer">
           <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Folder" EntityType="Self.Folder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Photo__AuthorId__52593CB8" Association="Self.FK__Photo__AuthorId__52593CB8">
+          <AssociationSet Name="FK__Folder__Overridi__3E52440B" Association="Self.FK__Folder__Overridi__3E52440B">
+            <End Role="Folder" EntitySet="Folder" />
+            <End Role="Folder1" EntitySet="Folder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photo__AuthorId__3F466844" Association="Self.FK__Photo__AuthorId__3F466844">
             <End Role="Authors" EntitySet="Authors" />
             <End Role="Photo" EntitySet="Photo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Photo__TagId__534D60F1" Association="Self.FK__Photo__TagId__534D60F1">
+          <AssociationSet Name="FK__Photo__FolderId__3D5E1FD2" Association="Self.FK__Photo__FolderId__3D5E1FD2">
+            <End Role="Folder" EntitySet="Folder" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photo__TagId__403A8C7D" Association="Self.FK__Photo__TagId__403A8C7D">
             <End Role="Tags" EntitySet="Tags" />
             <End Role="Photo" EntitySet="Photo" />
           </AssociationSet>
@@ -79,7 +121,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PhotoManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PhotoManagerDataBase_v2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Authors">
           <Key>
             <PropertyRef Name="AuthorId" />
@@ -87,27 +129,40 @@
           <Property Name="AuthorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Photo" Relationship="Self.FK__Photo__AuthorId__52593CB8" FromRole="Authors" ToRole="Photo" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK__Photo__AuthorId__3F466844" FromRole="Authors" ToRole="Photo" />
+        </EntityType>
+        <EntityType Name="Folder">
+          <Key>
+            <PropertyRef Name="FolderId" />
+          </Key>
+          <Property Name="FolderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OverridingFolder" Type="Int32" />
+          <NavigationProperty Name="Folder1" Relationship="Self.FK__Folder__Overridi__3E52440B" FromRole="Folder" ToRole="Folder1" />
+          <NavigationProperty Name="Folder2" Relationship="Self.FK__Folder__Overridi__3E52440B" FromRole="Folder1" ToRole="Folder" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK__Photo__FolderId__3D5E1FD2" FromRole="Folder" ToRole="Photo" />
         </EntityType>
         <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="PhotoId" />
           </Key>
           <Property Name="PhotoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PhotoName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateOfExecutin" Type="DateTime" Precision="0" />
           <Property Name="AuthorId" Type="Int32" />
           <Property Name="TagId" Type="Int32" />
-          <Property Name="Height" Type="Int32" Nullable="false" />
-          <Property Name="Width" Type="Int32" Nullable="false" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Width" Type="Int32" />
           <Property Name="Size" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="PathFolder" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FolderId" Type="Int32" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="ApertureUnit" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="ExposureTime" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="FocalLenght" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="Authors" Relationship="Self.FK__Photo__AuthorId__52593CB8" FromRole="Photo" ToRole="Authors" />
-          <NavigationProperty Name="Tags" Relationship="Self.FK__Photo__TagId__534D60F1" FromRole="Photo" ToRole="Tags" />
+          <Property Name="Photo1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Authors" Relationship="Self.FK__Photo__AuthorId__3F466844" FromRole="Photo" ToRole="Authors" />
+          <NavigationProperty Name="Folder" Relationship="Self.FK__Photo__FolderId__3D5E1FD2" FromRole="Photo" ToRole="Folder" />
+          <NavigationProperty Name="Tags" Relationship="Self.FK__Photo__TagId__403A8C7D" FromRole="Photo" ToRole="Tags" />
         </EntityType>
         <EntityType Name="Tags">
           <Key>
@@ -115,9 +170,9 @@
           </Key>
           <Property Name="TagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tag" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Photo" Relationship="Self.FK__Photo__TagId__534D60F1" FromRole="Tags" ToRole="Photo" />
+          <NavigationProperty Name="Photo" Relationship="Self.FK__Photo__TagId__403A8C7D" FromRole="Tags" ToRole="Photo" />
         </EntityType>
-        <Association Name="FK__Photo__AuthorId__52593CB8">
+        <Association Name="FK__Photo__AuthorId__3F466844">
           <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
           <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,7 +184,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Photo__TagId__534D60F1">
+        <Association Name="FK__Folder__Overridi__3E52440B">
+          <End Role="Folder" Type="Self.Folder" Multiplicity="0..1" />
+          <End Role="Folder1" Type="Self.Folder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Folder">
+              <PropertyRef Name="FolderId" />
+            </Principal>
+            <Dependent Role="Folder1">
+              <PropertyRef Name="OverridingFolder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photo__FolderId__3D5E1FD2">
+          <End Role="Folder" Type="Self.Folder" Multiplicity="1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Folder">
+              <PropertyRef Name="FolderId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="FolderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photo__TagId__403A8C7D">
           <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
           <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,15 +220,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PhotoManagerEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PhotoManagerDataBase_v2Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Authors" EntityType="Self.Authors" />
+          <EntitySet Name="Folder" EntityType="Self.Folder" />
           <EntitySet Name="Photo" EntityType="Self.Photo" />
           <EntitySet Name="Tags" EntityType="Self.Tags" />
-          <AssociationSet Name="FK__Photo__AuthorId__52593CB8" Association="Self.FK__Photo__AuthorId__52593CB8">
+          <AssociationSet Name="FK__Photo__AuthorId__3F466844" Association="Self.FK__Photo__AuthorId__3F466844">
             <End Role="Authors" EntitySet="Authors" />
             <End Role="Photo" EntitySet="Photo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Photo__TagId__534D60F1" Association="Self.FK__Photo__TagId__534D60F1">
+          <AssociationSet Name="FK__Folder__Overridi__3E52440B" Association="Self.FK__Folder__Overridi__3E52440B">
+            <End Role="Folder" EntitySet="Folder" />
+            <End Role="Folder1" EntitySet="Folder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photo__FolderId__3D5E1FD2" Association="Self.FK__Photo__FolderId__3D5E1FD2">
+            <End Role="Folder" EntitySet="Folder" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photo__TagId__403A8C7D" Association="Self.FK__Photo__TagId__403A8C7D">
             <End Role="Tags" EntitySet="Tags" />
             <End Role="Photo" EntitySet="Photo" />
           </AssociationSet>
@@ -159,9 +247,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PhotoManagerModelStoreContainer" CdmEntityContainer="PhotoManagerEntities">
+        <EntityContainerMapping StorageEntityContainer="PhotoManagerDataBase_v2ModelStoreContainer" CdmEntityContainer="PhotoManagerDataBase_v2Entities">
           <EntitySetMapping Name="Authors">
-            <EntityTypeMapping TypeName="PhotoManagerModel.Authors">
+            <EntityTypeMapping TypeName="PhotoManagerDataBase_v2Model.Authors">
               <MappingFragment StoreEntitySet="Authors">
                 <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -169,27 +257,37 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Folder">
+            <EntityTypeMapping TypeName="PhotoManagerDataBase_v2Model.Folder">
+              <MappingFragment StoreEntitySet="Folder">
+                <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OverridingFolder" ColumnName="OverridingFolder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Photo">
-            <EntityTypeMapping TypeName="PhotoManagerModel.Photo">
+            <EntityTypeMapping TypeName="PhotoManagerDataBase_v2Model.Photo">
               <MappingFragment StoreEntitySet="Photo">
                 <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
-                <ScalarProperty Name="PhotoName" ColumnName="PhotoName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="DateOfExecutin" ColumnName="DateOfExecutin" />
                 <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
                 <ScalarProperty Name="TagId" ColumnName="TagId" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
                 <ScalarProperty Name="Width" ColumnName="Width" />
                 <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="PathFolder" ColumnName="PathFolder" />
+                <ScalarProperty Name="FolderId" ColumnName="FolderId" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="ApertureUnit" ColumnName="ApertureUnit" />
                 <ScalarProperty Name="ExposureTime" ColumnName="ExposureTime" />
                 <ScalarProperty Name="FocalLenght" ColumnName="FocalLenght" />
+                <ScalarProperty Name="Photo1" ColumnName="Photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tags">
-            <EntityTypeMapping TypeName="PhotoManagerModel.Tags">
+            <EntityTypeMapping TypeName="PhotoManagerDataBase_v2Model.Tags">
               <MappingFragment StoreEntitySet="Tags">
                 <ScalarProperty Name="TagId" ColumnName="TagId" />
                 <ScalarProperty Name="Tag" ColumnName="Tag" />

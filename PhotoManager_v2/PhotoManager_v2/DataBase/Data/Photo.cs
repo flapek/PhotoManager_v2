@@ -15,20 +15,22 @@ namespace PhotoManager_v2.DataBase.Data
     public partial class Photo
     {
         public int PhotoId { get; set; }
-        public string PhotoName { get; set; }
+        public string Name { get; set; }
         public Nullable<System.DateTime> DateOfExecutin { get; set; }
         public Nullable<int> AuthorId { get; set; }
         public Nullable<int> TagId { get; set; }
-        public int Height { get; set; }
-        public int Width { get; set; }
+        public Nullable<int> Height { get; set; }
+        public Nullable<int> Width { get; set; }
         public decimal Size { get; set; }
-        public string PathFolder { get; set; }
+        public int FolderId { get; set; }
         public string Comment { get; set; }
         public Nullable<decimal> ApertureUnit { get; set; }
         public Nullable<decimal> ExposureTime { get; set; }
         public Nullable<decimal> FocalLenght { get; set; }
+        public byte[] Photo1 { get; set; }
     
         public virtual Authors Authors { get; set; }
+        public virtual Folder Folder { get; set; }
         public virtual Tags Tags { get; set; }
     }
 }

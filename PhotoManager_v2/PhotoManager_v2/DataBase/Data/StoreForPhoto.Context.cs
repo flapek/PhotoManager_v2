@@ -13,10 +13,10 @@ namespace PhotoManager_v2.DataBase.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PhotoManagerEntities : DbContext
+    public partial class PhotoManagerDataBase_v2Entities : DbContext
     {
-        public PhotoManagerEntities()
-            : base("name=PhotoManagerEntities")
+        public PhotoManagerDataBase_v2Entities()
+            : base("name=PhotoManagerDataBase_v2Entities")
         {
         }
     
@@ -26,6 +26,7 @@ namespace PhotoManager_v2.DataBase.Data
         }
     
         public virtual DbSet<Authors> Authors { get; set; }
+        public virtual DbSet<Folder> Folder { get; set; }
         public virtual DbSet<Photo> Photo { get; set; }
         public virtual DbSet<Tags> Tags { get; set; }
     }

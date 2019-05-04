@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4130ee33ff014ee5803255bd2a5d52ec" Name="Diagram1">
+        <EntityTypeShape EntityType="PhotoManagerDataBase_v2Model.Authors" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhotoManagerDataBase_v2Model.Folder" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhotoManagerDataBase_v2Model.Photo" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhotoManagerDataBase_v2Model.Tags" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="PhotoManagerDataBase_v2Model.FK__Photo__AuthorId__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="PhotoManagerDataBase_v2Model.FK__Folder__Overridi__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="PhotoManagerDataBase_v2Model.FK__Photo__FolderId__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="PhotoManagerDataBase_v2Model.FK__Photo__TagId__403A8C7D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

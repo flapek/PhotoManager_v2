@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTreeView", "WpfTreeView\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slider", "Slider\Slider.csproj", "{7B941599-39A3-406F-83F5-B6A5F19BD61E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoToDataBase", "PhotoToDataBase\PhotoToDataBase.csproj", "{C18C2A25-AB19-4DAC-A17F-9212B81C9505}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCarousel", "..\..\..\..\Desktop\ProjektProgramowanie\WpfCarouselDemo\WpfCarouselDemo\WpfCarousel.csproj", "{EE654EEC-7906-4700-9A2C-64280E92B6AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{7B941599-39A3-406F-83F5-B6A5F19BD61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B941599-39A3-406F-83F5-B6A5F19BD61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B941599-39A3-406F-83F5-B6A5F19BD61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C18C2A25-AB19-4DAC-A17F-9212B81C9505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C18C2A25-AB19-4DAC-A17F-9212B81C9505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C18C2A25-AB19-4DAC-A17F-9212B81C9505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C18C2A25-AB19-4DAC-A17F-9212B81C9505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE654EEC-7906-4700-9A2C-64280E92B6AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE654EEC-7906-4700-9A2C-64280E92B6AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE654EEC-7906-4700-9A2C-64280E92B6AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE654EEC-7906-4700-9A2C-64280E92B6AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
